@@ -292,25 +292,31 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
     <h2>💡 مولد الأفكار</h2>
+  <div class="screen-page" id="screen-ideas">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>💡 أفكار من المدونة</h2>
   </div>
   <div class="content">
-  <div class="calc-box">
-    <label>اختر المجال</label>
-    <select id="nicheSelect" style="width:100%;padding:12px 15px;border:1px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:14px;outline:none;margin-bottom:15px">
-      <option value="الربح من الإنترنت">الربح من الإنترنت</option>
-      <option value="العمل الحر">العمل الحر (فريلانس)</option>
-      <option value="التجارة الإلكترونية">التجارة الإلكترونية</option>
-      <option value="التسويق الرقمي">التسويق الرقمي</option>
-      <option value="الذكاء الاصطناعي">الذكاء الاصطناعي</option>
-      <option value="صناعة المحتوى">صناعة المحتوى</option>
-      <option value="تعلم البرمجة">تعلم البرمجة</option>
-      <option value="التصميم">التصميم</option>
-    </select>
-    <button onclick="generateIdeas()"><i class="fa-solid fa-lightbulb"></i> ولّد أفكار فيديوهات</button>
+    <div class="calc-box">
+      <label>اختر المجال</label>
+      <select id="nicheSelect" style="width:100%;padding:12px 15px;border:1px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:14px;outline:none;margin-bottom:15px">
+        <option value="الربح من الإنترنت">الربح من الإنترنت</option>
+        <option value="العمل من المنزل">العمل من المنزل</option>
+        <option value="فريلانس">فريلانس</option>
+        <option value="مواقع الربح">مواقع الربح</option>
+        <option value="تطبيقات الربح">تطبيقات الربح</option>
+        <option value="أدوات الذكاء الاصطناعي">أدوات الذكاء الاصطناعي</option>
+        <option value="صناعة المحتوى">صناعة المحتوى</option>
+        <option value="الربح من يوتيوب">الربح من يوتيوب</option>
+      </select>
+      <button onclick="loadIdeasFromBlog()"><i class="fa-solid fa-lightbulb"></i> اجلب أفكار من المدونة</button>
+    </div>
+    <div id="ideasResult" style="margin-top:15px">
+      <div class="loading">اختر مجال واضغط الزر لجلب الأفكار...</div>
+    </div>
   </div>
-  <div class="result-box" id="ideasResult" style="text-align:right"></div>
   </div>
-
 <div class="screen-page" id="screen-script">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
