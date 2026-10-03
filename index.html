@@ -421,6 +421,45 @@ script.onerror = function() {
   container.innerHTML = '<div class="loading">تعذر تحميل المقالات، حاول لاحقاً</div>';
 };
   document.body.appendChild(script);
+  window.displayIdeas = function(data) {
+  const resultBox = document.getElementById('ideasResult');
+  const entries = data.feed.entry || [];
+  if (!entries.length) {
+    resultBox.innerHTML = '<div class="loading">لا توجد مقالات في التصنيف ده حالياً</div>';
+    return;
+  }
+  let html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-lightbulb" style="color:#fbbf24"></i> أفكار فيديوهات من مقالاتنا:</h3>';
+  entries.forEach(entry => {
+    const title = entry.title.$t;
+    let link = '#';
+    entry.link.forEach(l => {
+      if (l.rel === 'alternate') link = l.href;
+    });
+    html += '<a href="' + link + '" target="_blank" style="display:block;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:14px;margin-bottom:10px;text-decoration:none;color:#0f172a">';
+    html += '<div style="display:flex;align-items:flex-start;gap:10px">';
+    html += '<i class="fa-solid fa-lightbulb" style="color:#fbbf24;font-size:16px;margin-top:3px"></i>';
+    html += '<div style="flex:1">';
+    html += '<h4 style="font-size:13.5px;font-weight:700;line-height:1.5;margin-bottom:6px">' + title + '</h4>';
+    html += '<div style="font-size:11px;color:#64748b">اضغط لقراءة المقال</div>';
+    html += '</div></div></a>';
+  });
+  resultBox.innerHTML = html;
+};
+
+function loadIdeasFromBlog() {
+  const niche = document.getElementById('nicheSelect').value;
+  const resultBox = document.getElementById('ideasResult');
+  resultBox.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري جلب الأفكار...</div>';
+  const oldScript = document.getElementById('ideasScript');
+  if (oldScript) oldScript.remove();
+  const script = document.createElement('script');
+  script.id = 'ideasScript';
+  script.src = 'https://nourblog22.blogspot.com/feeds/posts/default/-/' + encodeURIComponent(niche) + '?alt=json-in-script&max-results=8&callback=displayIdeas';
+  script.onerror = function() {
+    resultBox.innerHTML = '<div class="loading">تعذر جلب الأفكار، حاول لاحقاً</div>';
+  };
+  document.body.appendChild(script);
+}
 </script>
 
 </body>
