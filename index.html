@@ -363,40 +363,49 @@ function calculate() {
   document.getElementById('result').classList.add('show');
 }
 
-// تحميل المقالات من مدونة شغلانه نت
+  // تحميل المقالات من مدونة شغلانه نت
 const BLOG_URL = 'https://nourblog22.blogspot.com';
 const container = document.getElementById('posts-container');
 
-fetch(BLOG_URL + '/feeds/posts/default?alt=json&max-results=10')
-  .then(res => res.json())
-  .then(data => {
-    const entries = data.feed.entry || [];
-    if (!entries.length) {
-      container.innerHTML = '<div class="loading">لا توجد مقالات حالياً</div>';
-      return;
-    }
-    let html = '';
-    entries.forEach(entry => {
-      const title = entry.title.$t;
-      const link = entry.link.find(l => l.rel === 'alternate').href;
-      let img = 'https://via.placeholder.com/160x160/0f172a/fbbf24?text=نور+كاش';
-      if (entry.media$thumbnail) {
-        img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w200-h200-c/');
-      }
-      const date = new Date(entry.published.$t).toLocaleDateString('ar-EG', {
-        year: 'numeric', month: 'long', day: 'numeric'
-      });
-      html += '<a class="post-item" href="' + link + '">' +
-        '<img src="' + img + '" alt="' + title + '" loading="lazy">' +
-        '<div class="info"><h4>' + title + '</h4>' +
-        '<div class="meta"><i class="fa-solid fa-calendar"></i> ' + date + '</div></div></a>';
+// إظهار حالة التحميل
+container.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل المقالات...</div>';
+
+// استخدام JSONP بدل fetch لتجاوز CORS
+window.showPosts = function(data) {
+  const entries = data.feed.entry || [];
+  if (!entries.length) {
+    container.innerHTML = '<div class="loading">لا توجد مقالات حالياً</div>';
+    return;
+  }
+  let html = '';
+  entries.forEach(entry => {
+    const title = entry.title.$t;
+    let link = '#';
+    entry.link.forEach(l => {
+      if (l.rel === 'alternate') link = l.href;
     });
-    container.innerHTML = html;
-  })
-  .catch(err => {
-    container.innerHTML = '<div class="loading">تعذر تحميل المقالات، حاول لاحقاً</div>';
-    console.log(err);
+    let img = 'https://via.placeholder.com/160x160/0f172a/fbbf24?text=نور+كاش';
+    if (entry.media$thumbnail) {
+      img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w200-h200-c/');
+    }
+    const date = new Date(entry.published.$t).toLocaleDateString('ar-EG', {
+      year: 'numeric', month: 'long', day: 'numeric'
+    });
+    html += '<a class="post-item" href="' + link + '">' +
+      '<img src="' + img + '" alt="' + title + '" loading="lazy" onerror="this.src=\'https://via.placeholder.com/160x160/0f172a/fbbf24?text=NC\'">' +
+      '<div class="info"><h4>' + title + '</h4>' +
+      '<div class="meta"><i class="fa-solid fa-calendar"></i> ' + date + '</div></div></a>';
   });
+  container.innerHTML = html;
+};
+
+// إنشاء script tag لتحميل البيانات بصيغة JSONP
+const script = document.createElement('script');
+script.src = BLOG_URL + '/feeds/posts/default?alt=json-in-script&max-results=10&callback=showPosts';
+script.onerror = function() {
+  container.innerHTML = '<div class="loading">تعذر تحميل المقالات، حاول لاحقاً</div>';
+};
+  document.body.appendChild(script);
 </script>
 
 </body>
