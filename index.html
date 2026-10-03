@@ -324,7 +324,20 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <div id="scriptResult" style="margin-top:15px"></div>
   </div>
 </div>
-<div class="screen-page" id="screen-thumbnail"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>🖼️ أفكار Thumbnail</h2></div><div class="content"><div class="loading">قريباً...</div></div></div>
+<div class="screen-page" id="screen-thumbnail">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>🖼️ أفكار Thumbnail</h2>
+  </div>
+  <div class="content">
+    <div class="calc-box">
+      <label>اكتب موضوع الفيديو</label>
+      <input type="text" id="thumbTopic" placeholder="مثال: الربح من الإنترنت">
+      <button onclick="generateThumbnail()"><i class="fa-solid fa-image"></i> ولّد أفكار Thumbnail</button>
+    </div>
+    <div id="thumbResult" style="margin-top:15px"></div>
+  </div>
+</div>
 <div class="screen-page" id="screen-lessons"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>📚 دروس وشروحات</h2></div><div class="content"><div class="loading">قريباً...</div></div></div>
 <div class="screen-page" id="screen-about"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>👤 من نحن</h2></div><div class="content"><div class="info-page"><h3>عن نور كاش</h3><p>نور كاش هو تطبيق عربي شامل لكل أدوات الربح من الإنترنت وصناعة المحتوى. نهدف لمساعدة المستخدم العربي على اكتشاف أفضل المواقع والأدوات لتحقيق دخل من الإنترنت.</p></div></div></div>
 <div class="screen-page" id="screen-contact"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>📞 اتصل بنا</h2></div><div class="content"><div class="info-page"><h3>تواصل معنا</h3><p>لأي استفسار أو اقتراح، يمكنك التواصل معنا عبر البريد الإلكتروني:</p><p><a href="mailto:nourkarm1000@gmail.com">nourkarm1000@gmail.com</a></p></div></div></div>
@@ -452,6 +465,45 @@ function generateScript() {
   
   result.innerHTML = '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;line-height:1.9;font-size:13px;color:#334155">' + scripts[type] + '</div>';
 }
+  // مولد أفكار Thumbnail
+function generateThumbnail() {
+  const topic = document.getElementById('thumbTopic').value.trim();
+  const result = document.getElementById('thumbResult');
+  
+  if (!topic) {
+    result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>';
+    return;
+  }
+  
+  const ideas = [
+    { text: '😱 ' + topic + ' - لن تتوقع!', color: '#ef4444' },
+    { text: '💰 اربح من ' + topic + ' (طريقة سرية)', color: '#10b981' },
+    { text: '🚀 ' + topic + ' في 5 دقايق فقط!', color: '#3b82f6' },
+    { text: '❌ لا تجرب ' + topic + ' قبل ما تشوف ده', color: '#f97316' },
+    { text: '🔥 ' + topic + ' - الحقيقة الكاملة', color: '#8b5cf6' },
+    { text: '✅ أفضل طريقة لـ ' + topic + ' في 2026', color: '#06b6d4' },
+    { text: '⚡ ' + topic + ' - لن تصدق النتيجة!', color: '#ec4899' },
+    { text: '🎯 خطة كاملة لـ ' + topic + ' للمبتدئين', color: '#14b8a6' }
+  ];
+  
+  let html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-image" style="color:#fbbf24"></i> أفكار Thumbnail جاهزة:</h3>';
+  
+  ideas.forEach((idea, i) => {
+    html += '<div style="background:' + idea.color + ';color:#fff;border-radius:14px;padding:20px;margin-bottom:10px;font-weight:800;font-size:15px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.15);line-height:1.5">';
+    html += idea.text;
+    html += '</div>';
+  });
+  
+  html += '<div style="background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:14px;margin-top:15px;font-size:12px;color:#92400e;line-height:1.7">';
+  html += '<strong>💡 نصائح للتصميم:</strong><br>';
+  html += '• استخدم خط واضح وكبير<br>';
+  html += '• خلي الصورة بسيطة (وجه + نص)<br>';
+  html += '• استخدم ألوان متضاربة<br>';
+  html += '• اكتب 3-5 كلمات كحد أقصى';
+  html += '</div>';
+  
+  result.innerHTML = html;
+  }
 </script>
 
 </body>
