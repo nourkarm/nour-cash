@@ -432,6 +432,26 @@ function loadIdeasFromBlog() {
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الأفكار</div>'; };
   document.body.appendChild(script);
 }
+  // مولد السكريبت
+function generateScript() {
+  const topic = document.getElementById('scriptTopic').value.trim();
+  const type = document.getElementById('scriptType').value;
+  const result = document.getElementById('scriptResult');
+  
+  if (!topic) {
+    result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>';
+    return;
+  }
+  
+  const scripts = {
+    'تعليمي': '<h3>🎬 سكريبت تعليمي: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> السلام عليكم، في الفيديو ده هنتعلم كل حاجة عن ' + topic + ' من الصفر. لو مهتم، اكمل الفيديو للنهاية!</p><p><strong>المحتوى (3-5 دقايق):</strong> أولاً، هنتكلم عن أهمية ' + topic + '. ثانياً، هنتعلم الخطوات الأساسية. ثالثاً، هنتعرف على أدوات مساعدة. رابعاً، هنتكلم عن الأخطاء الشائعة.</p><p><strong>الخاتمة (10 ثواني):</strong> لو عجبك الفيديو، اضغط لايك واشترك في القناة، وشاركنا رأيك في التعليقات!</p>',
+    'ترفيهي': '<h3>🎬 سكريبت ترفيهي: ' + topic + '</h3><p><strong>المقدمة (5 ثواني):</strong> مستعد؟ هتشوف حاجة عن ' + topic + ' مش هتصدقها!</p><p><strong>المحتوى (3-5 دقايق):</strong> خد يا سيدي، الموضوع ' + topic + ' فيه كذا حاجة. أول حاجة، تخيل كده... تاني حاجة، بص هنا... تالت حاجة، استنى بس!</p><p><strong>الخاتمة:</strong> لو ضحكت، اعمل لايك، وشير الفيديو لأصحابك!</p>',
+    'مراجعة': '<h3>🎬 سكريبت مراجعة: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> النهاردة هعمل مراجعة كاملة لـ ' + topic + '. هل يستحق؟ يلا نعرف.</p><p><strong>المحتوى (4-6 دقايق):</strong> أول حاجة، الإيجابيات. ثانياً، السلبيات. ثالثاً، السعر والقيمة. رابعاً، تجربتي الشخصية. خامساً، هل أنصح بيه؟</p><p><strong>الخاتمة:</strong> في الآخر، القرار ليك. لو مفيد، اعمل لايك واشترك!</p>',
+    'قصة': '<h3>🎬 سكريبت قصة: ' + topic + '</h3><p><strong>المقدمة:</strong> في يوم من الأيام، حصلت حاجة غريبة عن ' + topic + '... </p><p><strong>المحتوى:</strong> البداية... بعدين... المفاجأة... النهاية!</p><p><strong>الخاتمة:</strong> ايه رأيك في القصة؟ اكتبلي في التعليقات!</p>'
+  };
+  
+  result.innerHTML = '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;line-height:1.9;font-size:13px;color:#334155">' + scripts[type] + '</div>';
+}
 </script>
 
 </body>
