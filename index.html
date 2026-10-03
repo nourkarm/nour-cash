@@ -303,7 +303,27 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 </div>
 
 <!-- ============ شاشات مؤقتة ============ -->
-<div class="screen-page" id="screen-script"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>✍️ مولد سكريبت</h2></div><div class="content"><div class="loading">قريباً...</div></div></div>
+<div class="screen-page" id="screen-script">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>✍️ مولد سكريبت</h2>
+  </div>
+  <div class="content">
+    <div class="calc-box">
+      <label>اكتب موضوع الفيديو</label>
+      <input type="text" id="scriptTopic" placeholder="مثال: الربح من الإنترنت">
+      <label>اختر نوع السكريبت</label>
+      <select id="scriptType">
+        <option value="تعليمي">تعليمي</option>
+        <option value="ترفيهي">ترفيهي</option>
+        <option value="مراجعة">مراجعة</option>
+        <option value="قصة">قصة</option>
+      </select>
+      <button onclick="generateScript()"><i class="fa-solid fa-pen-fancy"></i> ولّد السكريبت</button>
+    </div>
+    <div id="scriptResult" style="margin-top:15px"></div>
+  </div>
+</div>
 <div class="screen-page" id="screen-thumbnail"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>🖼️ أفكار Thumbnail</h2></div><div class="content"><div class="loading">قريباً...</div></div></div>
 <div class="screen-page" id="screen-lessons"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>📚 دروس وشروحات</h2></div><div class="content"><div class="loading">قريباً...</div></div></div>
 <div class="screen-page" id="screen-about"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>👤 من نحن</h2></div><div class="content"><div class="info-page"><h3>عن نور كاش</h3><p>نور كاش هو تطبيق عربي شامل لكل أدوات الربح من الإنترنت وصناعة المحتوى. نهدف لمساعدة المستخدم العربي على اكتشاف أفضل المواقع والأدوات لتحقيق دخل من الإنترنت.</p></div></div></div>
