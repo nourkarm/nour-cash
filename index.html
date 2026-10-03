@@ -338,7 +338,29 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <div id="thumbResult" style="margin-top:15px"></div>
   </div>
 </div>
-<div class="screen-page" id="screen-lessons"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>📚 دروس وشروحات</h2></div><div class="content"><div class="loading">قريباً...</div></div></div>
+<div class="screen-page" id="screen-lessons">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>📚 دروس وشروحات</h2>
+  </div>
+  <div class="content">
+    <div class="calc-box">
+      <label>اختر التصنيف</label>
+      <select id="lessonCategory">
+        <option value="الربح من الإنترنت">الربح من الإنترنت</option>
+        <option value="العمل من المنزل">العمل من المنزل</option>
+        <option value="فريلانس">فريلانس</option>
+        <option value="مواقع الربح">مواقع الربح</option>
+        <option value="صناعة المحتوى">صناعة المحتوى</option>
+        <option value="الربح من يوتيوب">الربح من يوتيوب</option>
+      </select>
+      <button onclick="loadLessons()"><i class="fa-solid fa-book"></i> اعرض الدروس</button>
+    </div>
+    <div id="lessonsResult" style="margin-top:15px">
+      <div class="loading">اختر تصنيف واضغط الزر لعرض الدروس...</div>
+    </div>
+  </div>
+</div>
 <div class="screen-page" id="screen-about"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>👤 من نحن</h2></div><div class="content"><div class="info-page"><h3>عن نور كاش</h3><p>نور كاش هو تطبيق عربي شامل لكل أدوات الربح من الإنترنت وصناعة المحتوى. نهدف لمساعدة المستخدم العربي على اكتشاف أفضل المواقع والأدوات لتحقيق دخل من الإنترنت.</p></div></div></div>
 <div class="screen-page" id="screen-contact"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>📞 اتصل بنا</h2></div><div class="content"><div class="info-page"><h3>تواصل معنا</h3><p>لأي استفسار أو اقتراح، يمكنك التواصل معنا عبر البريد الإلكتروني:</p><p><a href="mailto:nourkarm1000@gmail.com">nourkarm1000@gmail.com</a></p></div></div></div>
 <div class="screen-page" id="screen-privacy"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>🔒 سياسة الخصوصية</h2></div><div class="content"><div class="info-page"><h3>سياسة الخصوصية</h3><p>نحن في نور كاش نحترم خصوصيتك. لا نجمع أي بيانات شخصية من المستخدمين. التطبيق يعرض محتوى من مصادر عامة ولا يخزن أي معلومات شخصية.</p><p>عند استخدام التطبيق، أنت توافق على هذه السياسة.</p></div></div></div>
@@ -504,6 +526,43 @@ function generateThumbnail() {
   
   result.innerHTML = html;
   }
+  // دروس وشروحات
+window.displayLessons = function(data) {
+  const resultBox = document.getElementById('lessonsResult');
+  const entries = data.feed.entry || [];
+  if (!entries.length) {
+    resultBox.innerHTML = '<div class="loading">لا توجد دروس في التصنيف ده حالياً</div>';
+    return;
+  }
+  let html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-book" style="color:#fbbf24"></i> دروس مقترحة:</h3>';
+  entries.forEach(entry => {
+    const title = entry.title.$t;
+    let link = '#';
+    entry.link.forEach(l => { if (l.rel === 'alternate') link = l.href; });
+    let img = 'https://via.placeholder.com/80/0f172a/fbbf24?text=📚';
+    if (entry.media$thumbnail) img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w120-h120-c/');
+    html += '<a href="' + link + '" target="_blank" style="display:flex;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:10px;text-decoration:none;color:#0f172a">';
+    html += '<img src="' + img + '" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0">';
+    html += '<div style="flex:1;display:flex;flex-direction:column;justify-content:center">';
+    html += '<h4 style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:5px">' + title + '</h4>';
+    html += '<div style="font-size:10px;color:#64748b"><i class="fa-solid fa-arrow-left"></i> اضغط لقراءة الدرس</div>';
+    html += '</div></a>';
+  });
+  resultBox.innerHTML = html;
+};
+
+function loadLessons() {
+  const category = document.getElementById('lessonCategory').value;
+  const resultBox = document.getElementById('lessonsResult');
+  resultBox.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل الدروس...</div>';
+  const oldScript = document.getElementById('lessonsScript');
+  if (oldScript) oldScript.remove();
+  const script = document.createElement('script');
+  script.id = 'lessonsScript';
+  script.src = 'https://nourblog22.blogspot.com/feeds/posts/default/-/' + encodeURIComponent(category) + '?alt=json-in-script&max-results=10&callback=displayLessons';
+  script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الدروس</div>'; };
+  document.body.appendChild(script);
+}
 </script>
 
 </body>
