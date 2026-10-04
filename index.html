@@ -563,6 +563,37 @@ function loadLessons() {
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الدروس</div>'; };
   document.body.appendChild(script);
 }
+  /* ============ زر الرجوع للأعلى ============ */
+.back-to-top{position:fixed;bottom:90px;left:20px;width:48px;height:48px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0f172a;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 6px 20px rgba(251,191,36,.5);display:none;z-index:60;align-items:center;justify-content:center}
+.back-to-top.show{display:flex}
+
+/* ============ زر المفضلة ============ */
+.fav-btn{position:absolute;top:10px;left:10px;width:32px;height:32px;background:#fff;border:none;border-radius:50%;font-size:14px;color:#cbd5e1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1);z-index:2;display:flex;align-items:center;justify-content:center}
+.fav-btn.active{color:#ef4444}
+.tool-card{position:relative}
+
+/* ============ زر المشاركة ============ */
+.share-btn{background:transparent;border:none;color:#94a3b8;font-size:14px;cursor:pointer;padding:5px;margin-right:5px}
+.share-btn:active{color:#fbbf24}
+
+/* ============ Splash Screen ============ */
+.splash{position:fixed;inset:0;background:linear-gradient(160deg,#6d28d9 0%,#1e1b4b 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;color:#fff;text-align:center;transition:opacity .5s}
+.splash.hide{opacity:0;pointer-events:none}
+.splash-logo{width:120px;height:120px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:20px;box-shadow:0 20px 50px rgba(251,191,36,.4);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.splash h1{font-size:36px;font-weight:900;color:#fbbf24;margin-bottom:5px}
+.splash h1 span{color:#fff}
+.splash p{font-size:13px;color:#c4b5fd;margin-bottom:30px}
+.splash-loader{width:40px;height:40px;border:4px solid rgba(255,255,255,.2);border-top-color:#fbbf24;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* ============ تأثيرات حركية ============ */
+.screen-page.active{animation:fadeIn .3s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+.cat-card{transition:transform .2s,box-shadow .2s}
+.cat-card:active{transform:scale(.92);box-shadow:0 2px 8px rgba(0,0,0,.15)}
+.tool-card{transition:transform .2s}
+.tool-card:active{transform:scale(.98)}
 </script>
 
 </body>
