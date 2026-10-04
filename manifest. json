@@ -9,16 +9,3 @@
   "orientation": "portrait",
   "lang": "ar",
   "dir": "rtl",
-  "icons": [
-    {
-      "src": "https://via.placeholder.com/192x192/0f172a/fbbf24?text=NC",
-      "sizes": "192x192",
-      "type": "image/png"
-    },
-    {
-      "src": "https://via.placeholder.com/512x512/0f172a/fbbf24?text=NC",
-      "sizes": "512x512",
-      "type": "image/png"
-    }
-  ]
-}
