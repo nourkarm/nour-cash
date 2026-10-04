@@ -30,8 +30,8 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .section-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px}
 .section-head h2{font-size:15px;font-weight:800}
 .cat-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-bottom:20px}
-.cat-card{border-radius:16px;padding:16px 8px;text-align:center;color:#fff;text-decoration:none;display:block;cursor:pointer;transition:transform .2s}
-.cat-card:active{transform:scale(.95)}
+.cat-card{border-radius:16px;padding:16px 8px;text-align:center;color:#fff;text-decoration:none;display:block;cursor:pointer;transition:transform .2s,box-shadow .2s}
+.cat-card:active{transform:scale(.92);box-shadow:0 2px 8px rgba(0,0,0,.15)}
 .cat-card i{font-size:24px;margin-bottom:8px;display:block}
 .cat-card span{font-size:11px;font-weight:700;line-height:1.3;display:block}
 .c1{background:linear-gradient(135deg,#10b981,#059669)}
@@ -55,11 +55,13 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .nav-item span{font-size:9.5px;font-weight:700}
 .nav-item.active{color:#f59e0b}
 .screen-page{display:none}
-.screen-page.active{display:block}
+.screen-page.active{display:block;animation:fadeIn .3s ease-out}
+@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .page-header{background:#0f172a;color:#fff;padding:15px;display:flex;align-items:center;gap:12px;border-radius:0 0 20px 20px;margin-bottom:15px}
 .page-header .back-btn{background:rgba(255,255,255,.1);border:none;width:38px;height:38px;border-radius:50%;color:#fbbf24;font-size:16px;cursor:pointer}
 .page-header h2{font-size:17px;font-weight:800;flex:1}
-.tool-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.tool-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);position:relative;transition:transform .2s}
+.tool-card:active{transform:scale(.98)}
 .tool-card .tool-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
 .tool-card .tool-info{flex:1}
 .tool-card h4{font-size:14px;font-weight:700;margin-bottom:3px}
@@ -78,9 +80,41 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .result-box h3{font-size:13px;color:#94a3b8;margin-bottom:8px}
 .result-box .amount{font-size:32px;font-weight:900;color:#fbbf24;margin-bottom:5px}
 .result-box .sub{font-size:12px;color:#94a3b8}
+.info-page{background:#fff;border-radius:14px;padding:20px;line-height:1.9;font-size:14px;color:#334155}
+.info-page h3{color:#0f172a;font-size:16px;font-weight:800;margin-bottom:12px;padding-bottom:8px;border-bottom:2px solid #fbbf24}
+.info-page p{margin-bottom:12px}
+.info-page a{color:#f59e0b;font-weight:700;text-decoration:none}
+.menu-list{background:#fff;border-radius:14px;overflow:hidden;box-shadow:0 2px 8px rgba(0,0,0,.04)}
+.menu-list a{display:flex;align-items:center;gap:12px;padding:15px 18px;border-bottom:1px solid #f1f5f9;color:#0f172a;text-decoration:none;font-size:14px;font-weight:600;cursor:pointer}
+.menu-list a:last-child{border-bottom:none}
+.menu-list a i{color:#fbbf24;font-size:16px;width:20px;text-align:center}
+.menu-list a:active{background:#f8fafc}
+.back-to-top{position:fixed;bottom:90px;left:20px;width:48px;height:48px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0f172a;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 6px 20px rgba(251,191,36,.5);display:none;z-index:60;align-items:center;justify-content:center}
+.back-to-top.show{display:flex}
+.fav-btn{position:absolute;top:10px;left:10px;width:32px;height:32px;background:#fff;border:none;border-radius:50%;font-size:14px;color:#cbd5e1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1);z-index:2;display:flex;align-items:center;justify-content:center}
+.fav-btn.active{color:#ef4444}
+.share-btn{background:transparent;border:none;color:#94a3b8;font-size:14px;cursor:pointer;padding:5px;margin-right:5px}
+.share-btn:active{color:#fbbf24}
+.splash{position:fixed;inset:0;background:linear-gradient(160deg,#6d28d9 0%,#1e1b4b 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;color:#fff;text-align:center;transition:opacity .5s}
+.splash.hide{opacity:0;pointer-events:none}
+.splash-logo{width:120px;height:120px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:20px;box-shadow:0 20px 50px rgba(251,191,36,.4);animation:pulse 1.5s ease-in-out infinite}
+@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
+.splash h1{font-size:36px;font-weight:900;color:#fbbf24;margin-bottom:5px}
+.splash h1 span{color:#fff}
+.splash p{font-size:13px;color:#c4b5fd;margin-bottom:30px}
+.splash-loader{width:40px;height:40px;border:4px solid rgba(255,255,255,.2);border-top-color:#fbbf24;border-radius:50%;animation:spin 1s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
 </style>
 </head>
-<body>
+<body> 
+<!-- ============ Splash Screen ============ -->
+<div class="splash" id="splash">
+  <div class="splash-logo">💰</div>
+  <h1>نور <span>كاش</span></h1>
+  <p>كل أدوات الربح وصناعة المحتوى</p>
+  <div class="splash-loader"></div>
+</div>
+
 <!-- ============ الصفحة الرئيسية ============ -->
 <div class="screen-page active" id="screen-home">
   <div class="top-bar">
@@ -253,6 +287,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     </div>
   </div>
 </div>
+
 <!-- ============ شاشة حاسبة الأرباح ============ -->
 <div class="screen-page" id="screen-calculator">
   <div class="page-header">
@@ -275,7 +310,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
   </div>
 </div>
 
-<!-- ============ شاشة مولد الأفكار ============ -->
+<!-- ============ شاشة أفكار محتوى ============ -->
 <div class="screen-page" id="screen-ideas">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -302,7 +337,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
   </div>
 </div>
 
-<!-- ============ شاشات مؤقتة ============ -->
+<!-- ============ شاشة مولد سكريبت ============ -->
 <div class="screen-page" id="screen-script">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -324,6 +359,8 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <div id="scriptResult" style="margin-top:15px"></div>
   </div>
 </div>
+
+<!-- ============ شاشة أفكار Thumbnail ============ -->
 <div class="screen-page" id="screen-thumbnail">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -338,6 +375,8 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <div id="thumbResult" style="margin-top:15px"></div>
   </div>
 </div>
+
+<!-- ============ شاشة دروس وشروحات ============ -->
 <div class="screen-page" id="screen-lessons">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -361,24 +400,93 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     </div>
   </div>
 </div>
-<div class="screen-page" id="screen-about"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>👤 من نحن</h2></div><div class="content"><div class="info-page"><h3>عن نور كاش</h3><p>نور كاش هو تطبيق عربي شامل لكل أدوات الربح من الإنترنت وصناعة المحتوى. نهدف لمساعدة المستخدم العربي على اكتشاف أفضل المواقع والأدوات لتحقيق دخل من الإنترنت.</p></div></div></div>
-<div class="screen-page" id="screen-contact"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>📞 اتصل بنا</h2></div><div class="content"><div class="info-page"><h3>تواصل معنا</h3><p>لأي استفسار أو اقتراح، يمكنك التواصل معنا عبر البريد الإلكتروني:</p><p><a href="mailto:nourkarm1000@gmail.com">nourkarm1000@gmail.com</a></p></div></div></div>
-<div class="screen-page" id="screen-privacy"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>🔒 سياسة الخصوصية</h2></div><div class="content"><div class="info-page"><h3>سياسة الخصوصية</h3><p>نحن في نور كاش نحترم خصوصيتك. لا نجمع أي بيانات شخصية من المستخدمين. التطبيق يعرض محتوى من مصادر عامة ولا يخزن أي معلومات شخصية.</p><p>عند استخدام التطبيق، أنت توافق على هذه السياسة.</p></div></div></div>
-<div class="screen-page" id="screen-menu"><div class="page-header"><button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button><h2>☰ القائمة</h2></div><div class="content"><div class="menu-list"><a onclick="showScreen('about')"><i class="fa-solid fa-user"></i> من نحن</a><a onclick="showScreen('contact')"><i class="fa-solid fa-envelope"></i> اتصل بنا</a><a onclick="showScreen('privacy')"><i class="fa-solid fa-lock"></i> سياسة الخصوصية</a><a href="https://nourblog22.blogspot.com" target="_blank"><i class="fa-solid fa-globe"></i> زيارتنا على الويب</a></div></div></div>
 
-<!-- Bottom Nav -->
+<!-- ============ شاشة من نحن ============ -->
+<div class="screen-page" id="screen-about">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>👤 من نحن</h2>
+  </div>
+  <div class="content">
+    <div class="info-page">
+      <h3>عن نور كاش</h3>
+      <p>نور كاش هو تطبيق عربي شامل لكل أدوات الربح من الإنترنت وصناعة المحتوى. نهدف لمساعدة المستخدم العربي على اكتشاف أفضل المواقع والأدوات لتحقيق دخل من الإنترنت.</p>
+      <p>التطبيق بيجمع لك أفضل المواقع الموثوقة، أدوات الذكاء الاصطناعي، أدوات يوتيوب، وحاسبات مفيدة في مكان واحد.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ شاشة اتصل بنا ============ -->
+<div class="screen-page" id="screen-contact">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>📞 اتصل بنا</h2>
+  </div>
+  <div class="content">
+    <div class="info-page">
+      <h3>تواصل معنا</h3>
+      <p>لأي استفسار أو اقتراح، يمكنك التواصل معنا عبر البريد الإلكتروني:</p>
+      <p><a href="mailto:nourkarm1000@gmail.com">nourkarm1000@gmail.com</a></p>
+      <p>نرحب بكل ملاحظاتك واقتراحاتك لتطوير التطبيق.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ شاشة سياسة الخصوصية ============ -->
+<div class="screen-page" id="screen-privacy">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>🔒 سياسة الخصوصية</h2>
+  </div>
+  <div class="content">
+    <div class="info-page">
+      <h3>سياسة الخصوصية</h3>
+      <p>نحن في نور كاش نحترم خصوصيتك. لا نجمع أي بيانات شخصية من المستخدمين.</p>
+      <p>التطبيق يعرض محتوى من مصادر عامة ولا يخزن أي معلومات شخصية. عند استخدام التطبيق، أنت توافق على هذه السياسة.</p>
+    </div>
+  </div>
+</div>
+
+<!-- ============ شاشة القائمة ============ -->
+<div class="screen-page" id="screen-menu">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>☰ القائمة</h2>
+  </div>
+  <div class="content">
+    <div class="menu-list">
+      <a onclick="showScreen('about')"><i class="fa-solid fa-user"></i> من نحن</a>
+      <a onclick="showScreen('contact')"><i class="fa-solid fa-envelope"></i> اتصل بنا</a>
+      <a onclick="showScreen('privacy')"><i class="fa-solid fa-lock"></i> سياسة الخصوصية</a>
+      <a href="https://nourblog22.blogspot.com" target="_blank"><i class="fa-solid fa-globe"></i> زيارتنا على الويب</a>
+    </div>
+  </div>
+</div>
+
+<!-- زر الرجوع للأعلى -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
+
+<!-- ============ Bottom Nav ============ -->
 <div class="bottom-nav">
   <a class="nav-item active" onclick="showScreen('home')"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a>
   <a class="nav-item" href="#"><i class="fa-solid fa-star"></i><span>المفضلة</span></a>
   <a class="nav-item" href="#"><i class="fa-solid fa-newspaper"></i><span>المقالات</span></a>
   <a class="nav-item" onclick="showScreen('menu')"><i class="fa-solid fa-ellipsis"></i><span>المزيد</span></a>
 </div>
-
 <script>
 // Service Worker
 if ('serviceWorker' in navigator) {
   navigator.serviceWorker.register('service-worker.js').catch(e => console.log(e));
 }
+
+// Splash Screen
+window.addEventListener('load', function() {
+  setTimeout(function() {
+    document.getElementById('splash').classList.add('hide');
+  }, 1800);
+});
 
 // التنقل بين الشاشات
 function showScreen(name) {
@@ -388,6 +496,20 @@ function showScreen(name) {
     target.classList.add('active');
     window.scrollTo(0, 0);
   }
+}
+
+// زر الرجوع للأعلى
+const backToTopBtn = document.getElementById('backToTop');
+window.addEventListener('scroll', function() {
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
+});
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
 }
 
 // حاسبة الأرباح
@@ -467,36 +589,33 @@ function loadIdeasFromBlog() {
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الأفكار</div>'; };
   document.body.appendChild(script);
 }
-  // مولد السكريبت
+
+// مولد السكريبت
 function generateScript() {
   const topic = document.getElementById('scriptTopic').value.trim();
   const type = document.getElementById('scriptType').value;
   const result = document.getElementById('scriptResult');
-  
   if (!topic) {
     result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>';
     return;
   }
-  
   const scripts = {
-    'تعليمي': '<h3>🎬 سكريبت تعليمي: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> السلام عليكم، في الفيديو ده هنتعلم كل حاجة عن ' + topic + ' من الصفر. لو مهتم، اكمل الفيديو للنهاية!</p><p><strong>المحتوى (3-5 دقايق):</strong> أولاً، هنتكلم عن أهمية ' + topic + '. ثانياً، هنتعلم الخطوات الأساسية. ثالثاً، هنتعرف على أدوات مساعدة. رابعاً، هنتكلم عن الأخطاء الشائعة.</p><p><strong>الخاتمة (10 ثواني):</strong> لو عجبك الفيديو، اضغط لايك واشترك في القناة، وشاركنا رأيك في التعليقات!</p>',
-    'ترفيهي': '<h3>🎬 سكريبت ترفيهي: ' + topic + '</h3><p><strong>المقدمة (5 ثواني):</strong> مستعد؟ هتشوف حاجة عن ' + topic + ' مش هتصدقها!</p><p><strong>المحتوى (3-5 دقايق):</strong> خد يا سيدي، الموضوع ' + topic + ' فيه كذا حاجة. أول حاجة، تخيل كده... تاني حاجة، بص هنا... تالت حاجة، استنى بس!</p><p><strong>الخاتمة:</strong> لو ضحكت، اعمل لايك، وشير الفيديو لأصحابك!</p>',
-    'مراجعة': '<h3>🎬 سكريبت مراجعة: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> النهاردة هعمل مراجعة كاملة لـ ' + topic + '. هل يستحق؟ يلا نعرف.</p><p><strong>المحتوى (4-6 دقايق):</strong> أول حاجة، الإيجابيات. ثانياً، السلبيات. ثالثاً، السعر والقيمة. رابعاً، تجربتي الشخصية. خامساً، هل أنصح بيه؟</p><p><strong>الخاتمة:</strong> في الآخر، القرار ليك. لو مفيد، اعمل لايك واشترك!</p>',
-    'قصة': '<h3>🎬 سكريبت قصة: ' + topic + '</h3><p><strong>المقدمة:</strong> في يوم من الأيام، حصلت حاجة غريبة عن ' + topic + '... </p><p><strong>المحتوى:</strong> البداية... بعدين... المفاجأة... النهاية!</p><p><strong>الخاتمة:</strong> ايه رأيك في القصة؟ اكتبلي في التعليقات!</p>'
+    'تعليمي': '<h3>🎬 سكريبت تعليمي: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> السلام عليكم، في الفيديو ده هنتعلم كل حاجة عن ' + topic + ' من الصفر. لو مهتم، اكمل الفيديو للنهاية!</p><p><strong>المحتوى (3-5 دقايق):</strong> أولاً، هنتكلم عن أهمية ' + topic + '. ثانياً، هنتعلم الخطوات الأساسية. ثالثاً، هنتعرف على أدوات مساعدة. رابعاً، هنتكلم عن الأخطاء الشائعة.</p><p><strong>الخاتمة (10 ثواني):</strong> لو عجبك الفيديو، اضغط لايك واشترك في القناة!</p>',
+    'ترفيهي': '<h3>🎬 سكريبت ترفيهي: ' + topic + '</h3><p><strong>المقدمة (5 ثواني):</strong> مستعد؟ هتشوف حاجة عن ' + topic + ' مش هتصدقها!</p><p><strong>المحتوى (3-5 دقايق):</strong> خد يا سيدي، الموضوع ' + topic + ' فيه كذا حاجة. أول حاجة، تخيل كده... تاني حاجة، بص هنا... تالت حاجة، استنى بس!</p><p><strong>الخاتمة:</strong> لو ضحكت، اعمل لايك!</p>',
+    'مراجعة': '<h3>🎬 سكريبت مراجعة: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> النهاردة هعمل مراجعة كاملة لـ ' + topic + '. هل يستحق؟ يلا نعرف.</p><p><strong>المحتوى (4-6 دقايق):</strong> أول حاجة، الإيجابيات. ثانياً، السلبيات. ثالثاً، السعر والقيمة. رابعاً، تجربتي الشخصية. خامساً، هل أنصح بيه؟</p><p><strong>الخاتمة:</strong> في الآخر، القرار ليك!</p>',
+    'قصة': '<h3>🎬 سكريبت قصة: ' + topic + '</h3><p><strong>المقدمة:</strong> في يوم من الأيام، حصلت حاجة غريبة عن ' + topic + '... </p><p><strong>المحتوى:</strong> البداية... بعدين... المفاجأة... النهاية!</p><p><strong>الخاتمة:</strong> ايه رأيك في القصة؟</p>'
   };
-  
   result.innerHTML = '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;line-height:1.9;font-size:13px;color:#334155">' + scripts[type] + '</div>';
 }
-  // مولد أفكار Thumbnail
+
+// مولد أفكار Thumbnail
 function generateThumbnail() {
   const topic = document.getElementById('thumbTopic').value.trim();
   const result = document.getElementById('thumbResult');
-  
   if (!topic) {
     result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>';
     return;
   }
-  
   const ideas = [
     { text: '😱 ' + topic + ' - لن تتوقع!', color: '#ef4444' },
     { text: '💰 اربح من ' + topic + ' (طريقة سرية)', color: '#10b981' },
@@ -507,26 +626,15 @@ function generateThumbnail() {
     { text: '⚡ ' + topic + ' - لن تصدق النتيجة!', color: '#ec4899' },
     { text: '🎯 خطة كاملة لـ ' + topic + ' للمبتدئين', color: '#14b8a6' }
   ];
-  
   let html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-image" style="color:#fbbf24"></i> أفكار Thumbnail جاهزة:</h3>';
-  
-  ideas.forEach((idea, i) => {
-    html += '<div style="background:' + idea.color + ';color:#fff;border-radius:14px;padding:20px;margin-bottom:10px;font-weight:800;font-size:15px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.15);line-height:1.5">';
-    html += idea.text;
-    html += '</div>';
+  ideas.forEach(idea => {
+    html += '<div style="background:' + idea.color + ';color:#fff;border-radius:14px;padding:20px;margin-bottom:10px;font-weight:800;font-size:15px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.15);line-height:1.5">' + idea.text + '</div>';
   });
-  
-  html += '<div style="background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:14px;margin-top:15px;font-size:12px;color:#92400e;line-height:1.7">';
-  html += '<strong>💡 نصائح للتصميم:</strong><br>';
-  html += '• استخدم خط واضح وكبير<br>';
-  html += '• خلي الصورة بسيطة (وجه + نص)<br>';
-  html += '• استخدم ألوان متضاربة<br>';
-  html += '• اكتب 3-5 كلمات كحد أقصى';
-  html += '</div>';
-  
+  html += '<div style="background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:14px;margin-top:15px;font-size:12px;color:#92400e;line-height:1.7"><strong>💡 نصائح للتصميم:</strong><br>• استخدم خط واضح وكبير<br>• خلي الصورة بسيطة (وجه + نص)<br>• استخدم ألوان متضاربة<br>• اكتب 3-5 كلمات كحد أقصى</div>';
   result.innerHTML = html;
-  }
-  // دروس وشروحات
+}
+
+// دروس وشروحات
 window.displayLessons = function(data) {
   const resultBox = document.getElementById('lessonsResult');
   const entries = data.feed.entry || [];
@@ -541,12 +649,7 @@ window.displayLessons = function(data) {
     entry.link.forEach(l => { if (l.rel === 'alternate') link = l.href; });
     let img = 'https://via.placeholder.com/80/0f172a/fbbf24?text=📚';
     if (entry.media$thumbnail) img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w120-h120-c/');
-    html += '<a href="' + link + '" target="_blank" style="display:flex;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:10px;text-decoration:none;color:#0f172a">';
-    html += '<img src="' + img + '" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0">';
-    html += '<div style="flex:1;display:flex;flex-direction:column;justify-content:center">';
-    html += '<h4 style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:5px">' + title + '</h4>';
-    html += '<div style="font-size:10px;color:#64748b"><i class="fa-solid fa-arrow-left"></i> اضغط لقراءة الدرس</div>';
-    html += '</div></a>';
+    html += '<a href="' + link + '" target="_blank" style="display:flex;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:10px;text-decoration:none;color:#0f172a"><img src="' + img + '" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0"><div style="flex:1;display:flex;flex-direction:column;justify-content:center"><h4 style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:5px">' + title + '</h4><div style="font-size:10px;color:#64748b"><i class="fa-solid fa-arrow-left"></i> اضغط لقراءة الدرس</div></div></a>';
   });
   resultBox.innerHTML = html;
 };
@@ -559,41 +662,64 @@ function loadLessons() {
   if (oldScript) oldScript.remove();
   const script = document.createElement('script');
   script.id = 'lessonsScript';
-  script.src = 'https://nourblog22.blogspot.com/feeds/posts/default/-/' + encodeURIComponent(category) + '?alt=json-in-script&max-results=10&callback=displayLessons';
+  script.src = BLOG_URL + '/feeds/posts/default/-/' + encodeURIComponent(category) + '?alt=json-in-script&max-results=10&callback=displayLessons';
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الدروس</div>'; };
   document.body.appendChild(script);
 }
-  /* ============ زر الرجوع للأعلى ============ */
-.back-to-top{position:fixed;bottom:90px;left:20px;width:48px;height:48px;background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0f172a;border:none;border-radius:50%;font-size:20px;cursor:pointer;box-shadow:0 6px 20px rgba(251,191,36,.5);display:none;z-index:60;align-items:center;justify-content:center}
-.back-to-top.show{display:flex}
 
-/* ============ زر المفضلة ============ */
-.fav-btn{position:absolute;top:10px;left:10px;width:32px;height:32px;background:#fff;border:none;border-radius:50%;font-size:14px;color:#cbd5e1;cursor:pointer;box-shadow:0 2px 6px rgba(0,0,0,.1);z-index:2;display:flex;align-items:center;justify-content:center}
-.fav-btn.active{color:#ef4444}
-.tool-card{position:relative}
+// المفضلة
+let favorites = JSON.parse(localStorage.getItem('nourFav') || '[]');
+function toggleFav(name, btn) {
+  const index = favorites.indexOf(name);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    btn.classList.remove('active');
+    btn.innerHTML = '<i class="fa-regular fa-star"></i>';
+  } else {
+    favorites.push(name);
+    btn.classList.add('active');
+    btn.innerHTML = '<i class="fa-solid fa-star"></i>';
+  }
+  localStorage.setItem('nourFav', JSON.stringify(favorites));
+}
 
-/* ============ زر المشاركة ============ */
-.share-btn{background:transparent;border:none;color:#94a3b8;font-size:14px;cursor:pointer;padding:5px;margin-right:5px}
-.share-btn:active{color:#fbbf24}
+document.querySelectorAll('.tool-card').forEach(function(card) {
+  const title = card.querySelector('h4');
+  if (!title) return;
+  const name = title.textContent.trim();
+  const favBtn = document.createElement('button');
+  favBtn.className = 'fav-btn';
+  favBtn.innerHTML = favorites.includes(name) ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
+  if (favorites.includes(name)) favBtn.classList.add('active');
+  favBtn.onclick = function(e) {
+    e.stopPropagation();
+    toggleFav(name, favBtn);
+  };
+  card.appendChild(favBtn);
+});
 
-/* ============ Splash Screen ============ */
-.splash{position:fixed;inset:0;background:linear-gradient(160deg,#6d28d9 0%,#1e1b4b 100%);display:flex;flex-direction:column;justify-content:center;align-items:center;z-index:9999;color:#fff;text-align:center;transition:opacity .5s}
-.splash.hide{opacity:0;pointer-events:none}
-.splash-logo{width:120px;height:120px;background:linear-gradient(135deg,#fbbf24,#f59e0b);border-radius:30px;display:flex;align-items:center;justify-content:center;font-size:60px;margin-bottom:20px;box-shadow:0 20px 50px rgba(251,191,36,.4);animation:pulse 1.5s ease-in-out infinite}
-@keyframes pulse{0%,100%{transform:scale(1)}50%{transform:scale(1.08)}}
-.splash h1{font-size:36px;font-weight:900;color:#fbbf24;margin-bottom:5px}
-.splash h1 span{color:#fff}
-.splash p{font-size:13px;color:#c4b5fd;margin-bottom:30px}
-.splash-loader{width:40px;height:40px;border:4px solid rgba(255,255,255,.2);border-top-color:#fbbf24;border-radius:50%;animation:spin 1s linear infinite}
-@keyframes spin{to{transform:rotate(360deg)}}
-
-/* ============ تأثيرات حركية ============ */
-.screen-page.active{animation:fadeIn .3s ease-out}
-@keyframes fadeIn{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.cat-card{transition:transform .2s,box-shadow .2s}
-.cat-card:active{transform:scale(.92);box-shadow:0 2px 8px rgba(0,0,0,.15)}
-.tool-card{transition:transform .2s}
-.tool-card:active{transform:scale(.98)}
+// مشاركة الأدوات
+document.querySelectorAll('.tool-card').forEach(function(card) {
+  const info = card.querySelector('.tool-info');
+  if (!info) return;
+  const shareBtn = document.createElement('button');
+  shareBtn.className = 'share-btn';
+  shareBtn.innerHTML = '<i class="fa-solid fa-share-nodes"></i>';
+  shareBtn.onclick = function(e) {
+    e.stopPropagation();
+    const title = card.querySelector('h4').textContent.trim();
+    if (navigator.share) {
+      navigator.share({
+        title: 'نور كاش - ' + title,
+        text: 'جرب ' + title + ' على تطبيق نور كاش!',
+        url: window.location.href
+      });
+    } else {
+      alert('المشاركة غير متاحة على هذا المتصفح');
+    }
+  };
+  info.appendChild(shareBtn);
+});
 </script>
 
 </body>
