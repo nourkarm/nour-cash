@@ -1072,6 +1072,49 @@ document.addEventListener('DOMContentLoaded', function() {
   updateEarningsScreen();
   renderHistory();
 });
+  // Firebase Notifications
+var firebaseConfig = {
+  apiKey: "AIzaSyDlG3Yn6QqScAL1ZuAlexkkM3Or1C3segs",
+  authDomain: "nourcash-web.firebaseapp.com",
+  projectId: "nourcash-web",
+  storageBucket: "nourcash-web.firebasestorage.app",
+  messagingSenderId: "211551687077",
+  appId: "1:211551687077:web:bf134ba03078a48773584c"
+};
+var VAPID_KEY = "BOQAqR1dM7IVMbiKHTjSb5w9BeQ2jmYC9fnScoWDgdHCHuuszgo659C8ZnHCO3VP7vlO7KpaZJaZtrMTJkhZ6WA";
+if (typeof firebase !== 'undefined') {
+  firebase.initializeApp(firebaseConfig);
+  var messaging = firebase.messaging();
+  window.requestNotificationPermission = function() {
+    Notification.requestPermission().then(function(permission) {
+      if (permission === 'granted') {
+        messaging.getToken({ vapidKey: VAPID_KEY }).then(function(token) {
+          localStorage.setItem('fcmToken', token);
+          alert('✅ تم تفعيل الإشعارات');
+          var btn = document.getElementById('notifyBtn');
+          if (btn) { btn.innerHTML = '<i class="fa-solid fa-bell"></i> الإشعارات مفعلة ✅'; btn.style.background = 'linear-gradient(135deg,#10b981,#059669)'; btn.style.color = '#fff'; }
+        }).catch(function(err) { console.error(err); alert('حصلت مشكلة'); });
+      }
+    });
+  };
+  document.addEventListener('DOMContentLoaded', function() {
+    setTimeout(function() {
+      var menuList = document.querySelector('.menu-list');
+      if (menuList && !document.getElementById('notifyBtn')) {
+        var notifyLink = document.createElement('a');
+        notifyLink.id = 'notifyBtn';
+        notifyLink.innerHTML = '<i class="fa-solid fa-bell"></i> تفعيل الإشعارات';
+        notifyLink.onclick = function(e) { e.preventDefault(); window.requestNotificationPermission(); };
+        menuList.insertBefore(notifyLink, menuList.firstChild);
+        if (localStorage.getItem('fcmToken')) {
+          notifyLink.innerHTML = '<i class="fa-solid fa-bell"></i> الإشعارات مفعلة ✅';
+          notifyLink.style.background = 'linear-gradient(135deg,#10b981,#059669)';
+          notifyLink.style.color = '#fff';
+        }
+      }
+    }, 500);
+  });
+}
 </script>
 
 </body>
