@@ -8,6 +8,7 @@
 <link rel="manifest" href="manifest.json">
 <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <script src="https://cdn.onesignal.com/sdks/web/v16/OneSignalSDK.page.js" defer></script>
   <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-messaging-compat.js"></script>
 <style>
@@ -1115,6 +1116,34 @@ if (typeof firebase !== 'undefined') {
     }, 500);
   });
 }
+  // OneSignal Notifications
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(async function(OneSignal) {
+  await OneSignal.init({
+    appId: "a4a1e117-5ab2-421d-bb79-281f6af9a47d",
+    notifyButton: {
+      enable: true,
+      position: 'bottom-left',
+      size: 'medium',
+      theme: 'default',
+      text: {
+        'tip.state.unsubscribed': 'اشترك في الإشعارات',
+        'tip.state.subscribed': 'أنت مشترك في الإشعارات',
+        'tip.state.blocked': 'أنت حظرت الإشعارات',
+        'message.prenotify': 'اضغط للاشتراك في الإشعارات',
+        'message.action.subscribed': 'شكراً لاشتراكك!',
+        'message.action.resubscribed': 'أهلاً بيك تاني!',
+        'message.action.unsubscribed': 'هتفتقدنا!',
+        'dialog.main.title': 'إدارة الإشعارات',
+        'dialog.main.button.subscribe': 'اشترك',
+        'dialog.main.button.unsubscribe': 'إلغاء الاشتراك',
+        'dialog.blocked.title': 'السماح بالإشعارات',
+        'dialog.blocked.message': 'اتبع التعليمات عشان تسمح بالإشعارات'
+      }
+    }
+  });
+  console.log('✅ OneSignal initialized');
+});
 </script>
 
 </body>
