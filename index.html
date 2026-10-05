@@ -1114,6 +1114,143 @@ document.addEventListener('DOMContentLoaded', function() {
   updateEarningsScreen();
   renderHistory();
 });
+  // ============ نظام التحديات والنقاط ============
+
+var CHALLENGES = [
+  { id: 'earnings', title: 'سجّل أرباحك النهاردة', desc: 'أضف عملية ربح واحدة على الأقل', points: 10, icon: '💰' },
+  { id: 'read', title: 'اقرأ مقال من المدونة', desc: 'افتح أي مقال واقرأه', points: 5, icon: '📖' },
+  { id: 'ai', title: 'جرب أداة ذكاء اصطناعي', desc: 'استخدم ChatGPT أو Leonardo أو غيرهم', points: 15, icon: '🤖' },
+  { id: 'script', title: 'اكتب سكريبت فيديو', desc: 'استخدم مولد السكريبت', points: 20, icon: '✍️' },
+  { id: 'calc', title: 'استخدم حاسبة الأرباح', desc: 'احسب أرباحك المتوقعة', points: 5, icon: '🧮' }
+];
+
+var BADGES = [
+  { id: 'beginner', name: 'مبتدئ', icon: '🌱', points: 0 },
+  { id: 'active', name: 'نشيط', icon: '⭐', points: 50 },
+  { id: 'pro', name: 'محترف', icon: '🏆', points: 200 },
+  { id: 'expert', name: 'خبير', icon: '👑', points: 500 },
+  { id: 'legend', name: 'أسطورة', icon: '💎', points: 1000 },
+  { id: 'master', name: 'ماستر', icon: '🔥', points: 2000 },
+  { id: 'grand', name: 'أسطوري', icon: '🌟', points: 5000 },
+  { id: 'god', name: 'إله الربح', icon: '⚡', points: 10000 }
+];
+
+// تحميل البيانات
+var totalPoints = parseInt(localStorage.getItem('nourPoints') || '0');
+var completedChallenges = JSON.parse(localStorage.getItem('nourCompleted') || '{}');
+var today = new Date().toISOString().split('T')[0];
+
+// إعادة تعيين التحديات لو يوم جديد
+if (completedChallenges.date !== today) {
+  completedChallenges = { date: today, items: [] };
+  localStorage.setItem('nourCompleted', JSON.stringify(completedChallenges));
+}
+
+// رسم شاشة التحديات
+function renderChallenges() {
+  // النقاط
+  document.getElementById('totalPoints').textContent = totalPoints;
+  
+  // المستوى
+  var currentLevel = BADGES[0];
+  var nextLevel = BADGES[1];
+  for (var i = BADGES.length - 1; i >= 0; i--) {
+    if (totalPoints >= BADGES[i].points) {
+      currentLevel = BADGES[i];
+      nextLevel = BADGES[i + 1] || BADGES[i];
+      break;
+    }
+  }
+  
+  var progressPercent = 100;
+  if (nextLevel && nextLevel !== currentLevel) {
+    var range = nextLevel.points - currentLevel.points;
+    var progress = totalPoints - currentLevel.points;
+    progressPercent = Math.min((progress / range) * 100, 100);
+    document.getElementById('levelText').textContent = currentLevel.name + ' - ' + totalPoints + ' من ' + nextLevel.points + ' نقطة';
+  } else {
+    document.getElementById('levelText').textContent = currentLevel.name + ' - ' + totalPoints + ' نقطة';
+  }
+  document.getElementById('levelFill').style.width = progressPercent + '%';
+  
+  // التحديات
+  var dailyChallenges = document.getElementById('dailyChallenges');
+  var html = '';
+  CHALLENGES.forEach(function(ch) {
+    var isDone = completedChallenges.items.indexOf(ch.id) > -1;
+    html += '<div class="challenge-item ' + (isDone ? 'done' : '') + '" onclick="completeChallenge(\'' + ch.id + '\', ' + ch.points + ')">';
+    html += '<div class="challenge-check"><i class="fa-solid ' + (isDone ? 'fa-check' : 'fa-circle') + '"></i></div>';
+    html += '<div class="challenge-info"><h4>' + ch.icon + ' ' + ch.title + '</h4><p>' + ch.desc + '</p></div>';
+    html += '<div class="challenge-points">+' + ch.points + '</div>';
+    html += '</div>';
+  });
+  dailyChallenges.innerHTML = html;
+  
+  // الشارات
+  var badgesGrid = document.getElementById('badgesGrid');
+  var badgesHtml = '';
+  BADGES.slice(0, 8).forEach(function(b) {
+    var unlocked = totalPoints >= b.points;
+    badgesHtml += '<div class="badge-item ' + (unlocked ? 'unlocked' : '') + '">';
+    badgesHtml += '<span class="badge-icon">' + b.icon + '</span>';
+    badgesHtml += '<span class="badge-name">' + b.name + '</span>';
+    badgesHtml += '</div>';
+  });
+  badgesGrid.innerHTML = badgesHtml;
+  
+  // الإحصائيات
+  var statsList = document.getElementById('statsList');
+  var completedCount = completedChallenges.items.length;
+  var earningsCount = earnings.length;
+  var articlesRead = parseInt(localStorage.getItem('nourArticlesRead') || '0');
+  
+  var statsHtml = '';
+  statsHtml += '<div class="progress-stat"><div class="stat-icon" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)"><i class="fa-solid fa-star"></i></div><div class="stat-info"><h4>إجمالي النقاط</h4><strong>' + totalPoints + '</strong></div></div>';
+  statsHtml += '<div class="progress-stat"><div class="stat-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-check"></i></div><div class="stat-info"><h4>تحديات اليوم</h4><strong>' + completedCount + ' / ' + CHALLENGES.length + '</strong></div></div>';
+  statsHtml += '<div class="progress-stat"><div class="stat-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)"><i class="fa-solid fa-dollar-sign"></i></div><div class="stat-info"><h4>عمليات الربح</h4><strong>' + earningsCount + '</strong></div></div>';
+  statsList.innerHTML = statsHtml;
+}
+
+// إكمال التحدي
+function completeChallenge(id, points) {
+  if (completedChallenges.items.indexOf(id) > -1) {
+    alert('إنت خلصت التحدي ده بالفعل! ✅');
+    return;
+  }
+  completedChallenges.items.push(id);
+  localStorage.setItem('nourCompleted', JSON.stringify(completedChallenges));
+  totalPoints += points;
+  localStorage.setItem('nourPoints', totalPoints);
+  alert('🎉 ممتاز! كسبت ' + points + ' نقطة');
+  renderChallenges();
+}
+
+// إعادة تعيين التحديات
+function resetDailyChallenges() {
+  if (!confirm('متأكد إنك عايز تعيد تعيين تحديات اليوم؟ (النقاط مش هتتمسح)')) return;
+  completedChallenges = { date: today, items: [] };
+  localStorage.setItem('nourCompleted', JSON.stringify(completedChallenges));
+  renderChallenges();
+  alert('✅ تم إعادة التعيين');
+}
+
+// تحديث الشاشة لما تفتح
+document.addEventListener('DOMContentLoaded', function() {
+  setTimeout(function() {
+    if (document.getElementById('totalPoints')) {
+      renderChallenges();
+    }
+  }, 500);
+});
+
+// تحديث النقاط لما المستخدم يعمل حاجة
+function addPoints(points) {
+  totalPoints += points;
+  localStorage.setItem('nourPoints', totalPoints);
+  if (document.getElementById('totalPoints')) {
+    renderChallenges();
+  }
+                                               }
 </script>
 
 </body>
