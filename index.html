@@ -733,6 +733,7 @@ function calculate() {
   document.getElementById('profit-amount').textContent = '$' + usd.toFixed(2);
   document.getElementById('profit-egp').textContent = '≈ ' + egp.toFixed(0) + ' جنيه مصري';
   document.getElementById('result').classList.add('show');
+  addPoints(5);
 }
 
 // البحث
@@ -740,6 +741,8 @@ function searchPosts() {
   var q = document.getElementById('searchInput').value.trim();
   if (q) {
     window.open('https://nourblog22.blogspot.com/search?q=' + encodeURIComponent(q), '_blank');
+      addPoints(3);
+  }
   }
 }
 
@@ -800,6 +803,7 @@ function loadIdeasFromBlog() {
   script.src = BLOG_URL + '/feeds/posts/default/-/' + encodeURIComponent(niche) + '?alt=json-in-script&max-results=8&callback=displayIdeas';
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الأفكار</div>'; };
   document.body.appendChild(script);
+    addPoints(5);
 }
 
 // مولد السكريبت
@@ -818,6 +822,7 @@ function generateScript() {
     'قصة': '<h3>🎬 سكريبت قصة: ' + topic + '</h3><p><strong>المقدمة:</strong> في يوم من الأيام، حصلت حاجة غريبة عن ' + topic + '... </p><p><strong>المحتوى:</strong> البداية... بعدين... المفاجأة... النهاية!</p><p><strong>الخاتمة:</strong> ايه رأيك في القصة؟</p>'
   };
   result.innerHTML = '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;line-height:1.9;font-size:13px;color:#334155">' + scripts[type] + '</div>';
+  addPoints(20);
 }
 
 // مولد أفكار Thumbnail
@@ -844,6 +849,7 @@ function generateThumbnail() {
   });
   html += '<div style="background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:14px;margin-top:15px;font-size:12px;color:#92400e;line-height:1.7"><strong>💡 نصائح للتصميم:</strong><br>• استخدم خط واضح وكبير<br>• خلي الصورة بسيطة (وجه + نص)<br>• استخدم ألوان متضاربة<br>• اكتب 3-5 كلمات كحد أقصى</div>';
   result.innerHTML = html;
+  addPoints(10);
 }
 
 // دروس وشروحات
@@ -877,6 +883,7 @@ function loadLessons() {
   script.src = BLOG_URL + '/feeds/posts/default/-/' + encodeURIComponent(category) + '?alt=json-in-script&max-results=10&callback=displayLessons';
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الدروس</div>'; };
   document.body.appendChild(script);
+    addPoints(5);
 }
 
 // ============ تتبع الأرباح ============
@@ -895,6 +902,7 @@ function saveEarning() {
   alert('✅ تم حفظ الأرباح بنجاح!');
   updateEarningsScreen();
   showScreen('earnings');
+  addPoints(10);
 }
 
 function calculateStats() {
@@ -1245,11 +1253,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
 // تحديث النقاط لما المستخدم يعمل حاجة
 function addPoints(points) {
+  if (typeof totalPoints === 'undefined') return;
   totalPoints += points;
   localStorage.setItem('nourPoints', totalPoints);
   if (document.getElementById('totalPoints')) {
     renderChallenges();
   }
+}
                                                }
 </script>
 
