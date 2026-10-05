@@ -1252,15 +1252,13 @@ document.addEventListener('DOMContentLoaded', function() {
 });
 
 // تحديث النقاط لما المستخدم يعمل حاجة
-function addPoints(points) {
-  if (typeof totalPoints === 'undefined') return;
-  totalPoints += points;
+  function addPoints(points) {
+  totalPoints = totalPoints + points;
   localStorage.setItem('nourPoints', totalPoints);
   if (document.getElementById('totalPoints')) {
     renderChallenges();
   }
-}
-                                               }
+  }
 </script>
 
 </body>
