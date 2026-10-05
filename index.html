@@ -225,6 +225,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
       <a class="cat-card c8" onclick="showScreen('thumbnail')"><i class="fa-solid fa-image"></i><span>Thumbnail</span></a>
       <a class="cat-card c9" onclick="showScreen('lessons')"><i class="fa-solid fa-book"></i><span>دروس وشروحات</span></a>
       <a class="cat-card c10" onclick="showScreen('earnings')"><i class="fa-solid fa-chart-line"></i><span>أرباحي</span></a>
+      <a class="cat-card c11" onclick="showScreen('challenges')"><i class="fa-solid fa-trophy"></i><span>تحدياتي</span></a>
     </div>
     <div class="section-head"><h2>📰 آخر المقالات</h2></div>
     <div id="posts-container"><div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل المقالات...</div></div>
@@ -678,8 +679,8 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 <!-- ============ Bottom Nav ============ -->
 <div class="bottom-nav">
   <a class="nav-item active" onclick="showScreen('home')"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a>
-  <a class="nav-item" href="#"><i class="fa-solid fa-star"></i><span>المفضلة</span></a>
-  <a class="nav-item" href="#"><i class="fa-solid fa-newspaper"></i><span>المقالات</span></a>
+  <a class="nav-item" onclick="showScreen('challenges')"><i class="fa-solid fa-trophy"></i><span>تحدياتي</span></a>
+  <a class="nav-item" onclick="showScreen('earnings')"><i class="fa-solid fa-chart-line"></i><span>أرباحي</span></a>
   <a class="nav-item" onclick="showScreen('menu')"><i class="fa-solid fa-ellipsis"></i><span>المزيد</span></a>
 </div>
 <script>
