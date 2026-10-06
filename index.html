@@ -50,7 +50,6 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .c8{background:linear-gradient(135deg,#fbbf24,#f59e0b)}
 .c9{background:linear-gradient(135deg,#14b8a6,#0d9488)}
 .c10{background:linear-gradient(135deg,#0ea5e9,#0284c7)}
-.c11{background:linear-gradient(135deg,#f59e0b,#d97706)}
 .post-item{background:#fff;border-radius:14px;padding:12px;margin-bottom:12px;display:flex;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);text-decoration:none;color:inherit}
 .post-item img{width:80px;height:80px;border-radius:10px;object-fit:cover;background:#e2e8f0;flex-shrink:0}
 .post-item .info{flex:1;display:flex;flex-direction:column;justify-content:center}
@@ -68,7 +67,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .page-header{background:#0f172a;color:#fff;padding:15px;display:flex;align-items:center;gap:12px;border-radius:0 0 20px 20px;margin-bottom:15px}
 .page-header .back-btn{background:rgba(255,255,255,.1);border:none;width:38px;height:38px;border-radius:50%;color:#fbbf24;font-size:16px;cursor:pointer}
 .page-header h2{font-size:17px;font-weight:800;flex:1}
-.tool-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);position:relative;transition:transform .2s;text-decoration:none;color:inherit}
+.tool-card{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 8px rgba(0,0,0,.04);position:relative;transition:transform .2s}
 .tool-card:active{transform:scale(.98)}
 .tool-card .tool-icon{width:50px;height:50px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:22px;color:#fff;flex-shrink:0}
 .tool-card .tool-info{flex:1}
@@ -78,7 +77,6 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .badge-free{background:#dcfce7;color:#166534}
 .badge-paid{background:#fee2e2;color:#991b1b}
 .badge-both{background:#fef3c7;color:#92400e}
-.tool-card .open-icon{margin-right:auto;color:#fbbf24;font-size:14px}
 .calc-box{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;margin-bottom:15px;box-shadow:0 2px 8px rgba(0,0,0,.04)}
 .calc-box label{display:block;font-size:13px;font-weight:700;margin-bottom:8px;color:#0f172a}
 .calc-box input,.calc-box select{width:100%;padding:12px 15px;border:1px solid #e2e8f0;border-radius:10px;font-family:inherit;font-size:14px;outline:none;margin-bottom:15px;background:#fff}
@@ -152,7 +150,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .empty-state i{font-size:48px;color:#e2e8f0;margin-bottom:15px;display:block}
 .empty-state h3{font-size:15px;color:#64748b;margin-bottom:8px}
 .empty-state p{font-size:12px;line-height:1.6}
-/* ============ التحديات ============ */
+  /* ============ التحديات اليومية ============ */
 .points-card{background:linear-gradient(135deg,#0f172a,#1e293b);color:#fff;border-radius:18px;padding:22px;margin-bottom:15px;text-align:center;position:relative;overflow:hidden}
 .points-card::before{content:'';position:absolute;top:-40px;right:-40px;width:150px;height:150px;background:rgba(251,191,36,.15);border-radius:50%}
 .points-card .stars{font-size:28px;margin-bottom:8px;position:relative}
@@ -161,6 +159,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .points-card .level-bar{background:rgba(255,255,255,.15);border-radius:20px;height:10px;overflow:hidden;margin-bottom:8px;position:relative}
 .points-card .level-fill{background:linear-gradient(90deg,#fbbf24,#f59e0b);height:100%;border-radius:20px;width:0%;transition:width .5s ease}
 .points-card .level-text{font-size:11px;color:#cbd5e1;position:relative}
+
 .challenge-item{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:14px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,.03);transition:.2s}
 .challenge-item:active{transform:scale(.98)}
 .challenge-item.done{background:#f0fdf4;border-color:#86efac}
@@ -171,11 +170,13 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
 .challenge-info p{font-size:11px;color:#64748b}
 .challenge-item.done .challenge-info h4{text-decoration:line-through;color:#64748b}
 .challenge-points{background:linear-gradient(135deg,#fbbf24,#f59e0b);color:#0f172a;font-size:11px;font-weight:900;padding:5px 10px;border-radius:20px;flex-shrink:0}
+
 .badges-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin-bottom:15px}
 .badge-item{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:12px 6px;text-align:center;box-shadow:0 2px 6px rgba(0,0,0,.03);opacity:.4;transition:.3s}
 .badge-item.unlocked{opacity:1;border-color:#fbbf24;box-shadow:0 4px 12px rgba(251,191,36,.2)}
 .badge-item .badge-icon{font-size:28px;margin-bottom:5px;display:block}
 .badge-item .badge-name{font-size:9.5px;font-weight:700;color:#0f172a;display:block}
+
 .progress-stat{background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:15px;margin-bottom:10px;display:flex;align-items:center;gap:12px;box-shadow:0 2px 6px rgba(0,0,0,.03)}
 .progress-stat .stat-icon{width:45px;height:45px;border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:20px;color:#fff;flex-shrink:0}
 .progress-stat .stat-info{flex:1}
@@ -224,7 +225,6 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
       <a class="cat-card c8" onclick="showScreen('thumbnail')"><i class="fa-solid fa-image"></i><span>Thumbnail</span></a>
       <a class="cat-card c9" onclick="showScreen('lessons')"><i class="fa-solid fa-book"></i><span>دروس وشروحات</span></a>
       <a class="cat-card c10" onclick="showScreen('earnings')"><i class="fa-solid fa-chart-line"></i><span>أرباحي</span></a>
-      <a class="cat-card c11" onclick="showScreen('challenges')"><i class="fa-solid fa-trophy"></i><span>تحدياتي</span></a>
     </div>
     <div class="section-head"><h2>📰 آخر المقالات</h2></div>
     <div id="posts-container"><div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل المقالات...</div></div>
@@ -238,46 +238,38 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <h2>💰 مواقع الربح من الإنترنت</h2>
   </div>
   <div class="content">
-    <a class="tool-card" href="https://www.swagbucks.com" target="_blank">
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-sack-dollar"></i></div>
       <div class="tool-info"><h4>Swagbucks</h4><p>استبيانات ومهام بسيطة</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.fiverr.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)"><i class="fa-solid fa-briefcase"></i></div>
       <div class="tool-info"><h4>Fiverr</h4><p>خدمات مصغرة (فريلانس)</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://toloka.ai" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-list-check"></i></div>
       <div class="tool-info"><h4>Toloka</h4><p>مهام بسيطة وتدريب الذكاء الاصطناعي</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.picoworkers.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#06b6d4,#0891b2)"><i class="fa-solid fa-pen"></i></div>
       <div class="tool-info"><h4>Picoworkers</h4><p>مهام صغيرة وسريعة</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://yougov.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-solid fa-poll"></i></div>
       <div class="tool-info"><h4>YouGov</h4><p>استبيانات مدفوعة</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.clickworker.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)"><i class="fa-solid fa-hand-holding-dollar"></i></div>
       <div class="tool-info"><h4>Clickworker</h4><p>مهام كتابة وتدقيق</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://timebucks.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#ec4899,#db2777)"><i class="fa-solid fa-dollar-sign"></i></div>
       <div class="tool-info"><h4>TimeBucks</h4><p>مهام ومسابقات</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.appen.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#14b8a6,#0d9488)"><i class="fa-solid fa-cart-shopping"></i></div>
       <div class="tool-info"><h4>Appen</h4><p>مهام ذكاء اصطناعي</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
+    </div>
   </div>
 </div>
 
@@ -306,6 +298,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     </div>
   </div>
 </div>
+
 <!-- ============ شاشة أدوات AI ============ -->
 <div class="screen-page" id="screen-ai-tools">
   <div class="page-header">
@@ -313,41 +306,34 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <h2>🤖 أدوات الذكاء الاصطناعي</h2>
   </div>
   <div class="content">
-    <a class="tool-card" href="https://chat.openai.com" target="_blank">
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-comments"></i></div>
       <div class="tool-info"><h4>ChatGPT</h4><p>مساعد ذكي للكتابة والأفكار</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://leonardo.ai" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)"><i class="fa-solid fa-image"></i></div>
       <div class="tool-info"><h4>Leonardo AI</h4><p>إنشاء صور احترافية</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.capcut.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-solid fa-scissors"></i></div>
       <div class="tool-info"><h4>CapCut</h4><p>تحرير الفيديوهات</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://runwayml.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-film"></i></div>
       <div class="tool-info"><h4>Runway</h4><p>تحرير وتوليد الفيديوهات</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://suno.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#06b6d4,#0891b2)"><i class="fa-solid fa-music"></i></div>
       <div class="tool-info"><h4>Suno AI</h4><p>إنشاء أغاني وموسيقى</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://claude.ai" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)"><i class="fa-solid fa-pen-nib"></i></div>
       <div class="tool-info"><h4>Claude AI</h4><p>مساعد ذكي للكتابة الطويلة</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://elevenlabs.io" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#ec4899,#db2777)"><i class="fa-solid fa-microphone"></i></div>
       <div class="tool-info"><h4>ElevenLabs</h4><p>تحويل النص لصوت احترافي</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
+    </div>
   </div>
 </div>
 
@@ -358,34 +344,28 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <h2>🎬 أدوات يوتيوب</h2>
   </div>
   <div class="content">
-    <a class="tool-card" href="https://studio.youtube.com" target="_blank">
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#ef4444,#dc2626)"><i class="fa-brands fa-youtube"></i></div>
       <div class="tool-info"><h4>YouTube Studio</h4><p>إدارة قناتك وتحليل الأداء</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://vidiq.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-chart-line"></i></div>
       <div class="tool-info"><h4>VidIQ</h4><p>تحليل الكلمات المفتاحية</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.tubebuddy.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#f97316,#ea580c)"><i class="fa-solid fa-chart-simple"></i></div>
       <div class="tool-info"><h4>TubeBuddy</h4><p>تحسين قناتك وزيادة المشاهدات</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://www.canva.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#8b5cf6,#6d28d9)"><i class="fa-solid fa-image"></i></div>
       <div class="tool-info"><h4>Canva</h4><p>تصميم Thumbnails احترافية</p><span class="badge badge-free">مجاني</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
-    <a class="tool-card" href="https://inshot.com" target="_blank">
+    </div>
+    <div class="tool-card">
       <div class="tool-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)"><i class="fa-solid fa-video"></i></div>
       <div class="tool-info"><h4>InShot</h4><p>تحرير الفيديوهات على الموبايل</p><span class="badge badge-both">مجاني/مدفوع</span></div>
-      <i class="fa-solid fa-arrow-up-right-from-square open-icon"></i>
-    </a>
+    </div>
   </div>
 </div>
-
 <!-- ============ شاشة حاسبة الأرباح ============ -->
 <div class="screen-page" id="screen-calculator">
   <div class="page-header">
@@ -498,7 +478,10 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     </div>
   </div>
 </div>
+
 <!-- ============ قسم تتبع الأرباح ============ -->
+
+<!-- شاشة 1: الرئيسية - ملخص الأرباح -->
 <div class="screen-page" id="screen-earnings">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -522,19 +505,31 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
       <small id="goalText" style="display:block;text-align:center;color:#64748b;font-size:11px;margin-top:8px">0% من الهدف</small>
     </div>
     <div class="section-head"><h2>💼 أفضل المواقع</h2></div>
+    <div id="topSites" class="tool-card" style="display:none"></div>
     <div id="topSitesList"></div>
     <div class="section-head"><h2>📈 آخر 7 أيام</h2></div>
-    <div class="chart-box"><div class="chart-bars" id="chartBars"></div></div>
-    <button class="action-btn primary" onclick="showScreen('add-earning')"><i class="fa-solid fa-plus"></i> إضافة أرباح جديدة</button>
-    <button class="action-btn secondary" onclick="showScreen('earnings-history')"><i class="fa-solid fa-list"></i> عرض السجل الكامل</button>
+    <div class="chart-box">
+      <div class="chart-bars" id="chartBars"></div>
+    </div>
+    <button class="action-btn primary" onclick="showScreen('add-earning')">
+      <i class="fa-solid fa-plus"></i> إضافة أرباح جديدة
+    </button>
+    <button class="action-btn secondary" onclick="showScreen('earnings-history')">
+      <i class="fa-solid fa-list"></i> عرض السجل الكامل
+    </button>
     <div style="display:flex;gap:10px;margin-top:5px">
-      <button class="action-btn secondary" onclick="exportEarnings()" style="flex:1"><i class="fa-solid fa-download"></i> نسخ احتياطي</button>
-      <button class="action-btn secondary" onclick="document.getElementById('importFile').click()" style="flex:1"><i class="fa-solid fa-upload"></i> استيراد</button>
+      <button class="action-btn secondary" onclick="exportEarnings()" style="flex:1">
+        <i class="fa-solid fa-download"></i> نسخ احتياطي
+      </button>
+      <button class="action-btn secondary" onclick="document.getElementById('importFile').click()" style="flex:1">
+        <i class="fa-solid fa-upload"></i> استيراد
+      </button>
     </div>
     <input type="file" id="importFile" accept=".json" style="display:none" onchange="importEarnings(event)">
   </div>
 </div>
 
+<!-- شاشة 2: إضافة أرباح جديدة -->
 <div class="screen-page" id="screen-add-earning">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('earnings')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -567,6 +562,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
   </div>
 </div>
 
+<!-- شاشة 3: سجل الأرباح -->
 <div class="screen-page" id="screen-earnings-history">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('earnings')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -580,30 +576,9 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
       <button class="filter-btn" onclick="filterHistory('month', this)">الشهر</button>
     </div>
     <div id="historyList"><div class="loading">جاري تحميل السجل...</div></div>
-    <button class="action-btn danger" onclick="clearAllEarnings()"><i class="fa-solid fa-trash"></i> مسح كل البيانات</button>
-  </div>
-</div>
-
-<!-- ============ شاشة التحديات ============ -->
-<div class="screen-page" id="screen-challenges">
-  <div class="page-header">
-    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
-    <h2>🎯 تحدياتي</h2>
-  </div>
-  <div class="content">
-    <div class="points-card">
-      <div class="stars">🌟</div>
-      <h2 id="totalPoints">0</h2>
-      <p>نقطة</p>
-      <div class="level-bar"><div class="level-fill" id="levelFill"></div></div>
-      <div class="level-text" id="levelText">مبتدئ - 0 من 50 نقطة</div>
-    </div>
-    <div class="section-head"><h2>📅 تحدي اليوم</h2></div>
-    <div id="dailyChallenges"><div class="loading">جاري تحميل التحديات...</div></div>
-    <div class="section-head"><h2>🏆 شاراتي</h2></div>
-    <div class="badges-grid" id="badgesGrid"></div>
-    <div class="section-head"><h2>📊 إحصائياتي</h2></div>
-    <div id="statsList"></div>
+    <button class="action-btn danger" onclick="clearAllEarnings()">
+      <i class="fa-solid fa-trash"></i> مسح كل البيانات
+    </button>
   </div>
 </div>
 
@@ -622,6 +597,7 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
   </div>
 </div>
 
+<!-- ============ شاشة اتصل بنا ============ -->
 <div class="screen-page" id="screen-contact">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -632,10 +608,12 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
       <h3>تواصل معنا</h3>
       <p>لأي استفسار أو اقتراح، يمكنك التواصل معنا عبر البريد الإلكتروني:</p>
       <p><a href="mailto:nourkarm1000@gmail.com">nourkarm1000@gmail.com</a></p>
+      <p>نرحب بكل ملاحظاتك واقتراحاتك لتطوير التطبيق.</p>
     </div>
   </div>
 </div>
 
+<!-- ============ شاشة سياسة الخصوصية ============ -->
 <div class="screen-page" id="screen-privacy">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -645,11 +623,38 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     <div class="info-page">
       <h3>سياسة الخصوصية</h3>
       <p>نحن في نور كاش نحترم خصوصيتك. لا نجمع أي بيانات شخصية من المستخدمين.</p>
-      <p>التطبيق يعرض محتوى من مصادر عامة ولا يخزن أي معلومات شخصية.</p>
+      <p>التطبيق يعرض محتوى من مصادر عامة ولا يخزن أي معلومات شخصية. عند استخدام التطبيق، أنت توافق على هذه السياسة.</p>
     </div>
   </div>
 </div>
+  <!-- ============ شاشة التحديات ============ -->
+<div class="screen-page" id="screen-challenges">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>🎯 تحدياتي</h2>
+  </div>
+  <div class="content">
+    <div class="points-card">
+      <div class="stars">🌟</div>
+      <h2 id="totalPoints">0</h2>
+      <p>نقطة</p>
+      <div class="level-bar">
+        <div class="level-fill" id="levelFill"></div>
+      </div>
+      <div class="level-text" id="levelText">مبتدئ - 0 من 50 نقطة</div>
+    </div>
+    <div class="section-head"><h2>📅 تحدي اليوم</h2></div>
+    <div id="dailyChallenges">
+      <div class="loading">جاري تحميل التحديات...</div>
+    </div>
+    <div class="section-head"><h2>🏆 شاراتي</h2></div>
+    <div class="badges-grid" id="badgesGrid"></div>
+    <div class="section-head"><h2>📊 إحصائياتي</h2></div>
+    <div id="statsList"></div>
+  </div>
+</div>
 
+<!-- ============ شاشة القائمة ============ -->
 <div class="screen-page" id="screen-menu">
   <div class="page-header">
     <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
@@ -665,15 +670,18 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
   </div>
 </div>
 
-<button class="back-to-top" id="backToTop" onclick="scrollToTop()"><i class="fa-solid fa-arrow-up"></i></button>
+<!-- زر الرجوع للأعلى -->
+<button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+  <i class="fa-solid fa-arrow-up"></i>
+</button>
 
+<!-- ============ Bottom Nav ============ -->
 <div class="bottom-nav">
   <a class="nav-item active" onclick="showScreen('home')"><i class="fa-solid fa-house"></i><span>الرئيسية</span></a>
   <a class="nav-item" onclick="showScreen('challenges')"><i class="fa-solid fa-trophy"></i><span>تحدياتي</span></a>
   <a class="nav-item" onclick="showScreen('earnings')"><i class="fa-solid fa-chart-line"></i><span>أرباحي</span></a>
   <a class="nav-item" onclick="showScreen('menu')"><i class="fa-solid fa-ellipsis"></i><span>المزيد</span></a>
 </div>
-
 <script>
 // Service Worker
 if ('serviceWorker' in navigator) {
@@ -683,32 +691,36 @@ if ('serviceWorker' in navigator) {
 // Splash Screen
 window.addEventListener('load', function() {
   setTimeout(function() {
-    var splash = document.getElementById('splash');
-    if (splash) splash.classList.add('hide');
+    document.getElementById('splash').classList.add('hide');
   }, 1800);
 });
 
 // التنقل بين الشاشات
 function showScreen(name) {
   var screens = document.querySelectorAll('.screen-page');
-  for (var i = 0; i < screens.length; i++) screens[i].classList.remove('active');
+  for (var i = 0; i < screens.length; i++) {
+    screens[i].classList.remove('active');
+  }
   var target = document.getElementById('screen-' + name);
   if (target) {
     target.classList.add('active');
     window.scrollTo(0, 0);
-  }
-  if (name === 'challenges') {
-    setTimeout(function() { renderChallenges(); }, 100);
   }
 }
 
 // زر الرجوع للأعلى
 var backToTopBtn = document.getElementById('backToTop');
 window.addEventListener('scroll', function() {
-  if (window.scrollY > 300) backToTopBtn.classList.add('show');
-  else backToTopBtn.classList.remove('show');
+  if (window.scrollY > 300) {
+    backToTopBtn.classList.add('show');
+  } else {
+    backToTopBtn.classList.remove('show');
+  }
 });
-function scrollToTop() { window.scrollTo({ top: 0, behavior: 'smooth' }); }
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 
 // حاسبة الأرباح
 function calculate() {
@@ -719,7 +731,6 @@ function calculate() {
   document.getElementById('profit-amount').textContent = '$' + usd.toFixed(2);
   document.getElementById('profit-egp').textContent = '≈ ' + egp.toFixed(0) + ' جنيه مصري';
   document.getElementById('result').classList.add('show');
-  completeChallenge('calc', 5);
 }
 
 // البحث
@@ -727,7 +738,6 @@ function searchPosts() {
   var q = document.getElementById('searchInput').value.trim();
   if (q) {
     window.open('https://nourblog22.blogspot.com/search?q=' + encodeURIComponent(q), '_blank');
-    completeChallenge('read', 5);
   }
 }
 
@@ -737,7 +747,10 @@ var container = document.getElementById('posts-container');
 
 window.showPosts = function(data) {
   var entries = data.feed.entry || [];
-  if (!entries.length) { container.innerHTML = '<div class="loading">لا توجد مقالات حالياً</div>'; return; }
+  if (!entries.length) {
+    container.innerHTML = '<div class="loading">لا توجد مقالات حالياً</div>';
+    return;
+  }
   var html = '';
   entries.forEach(function(entry) {
     var title = entry.title.$t;
@@ -746,7 +759,7 @@ window.showPosts = function(data) {
     var img = 'https://via.placeholder.com/160x160/0f172a/fbbf24?text=NC';
     if (entry.media$thumbnail) img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w200-h200-c/');
     var date = new Date(entry.published.$t).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
-    html += '<a class="post-item" href="' + link + '" onclick="completeChallenge(\'read\', 5)"><img src="' + img + '" alt="' + title + '"><div class="info"><h4>' + title + '</h4><div class="meta">' + date + '</div></div></a>';
+    html += '<a class="post-item" href="' + link + '"><img src="' + img + '" alt="' + title + '"><div class="info"><h4>' + title + '</h4><div class="meta">' + date + '</div></div></a>';
   });
   container.innerHTML = html;
 };
@@ -760,7 +773,10 @@ document.body.appendChild(postsScript);
 window.displayIdeas = function(data) {
   var resultBox = document.getElementById('ideasResult');
   var entries = data.feed.entry || [];
-  if (!entries.length) { resultBox.innerHTML = '<div class="loading">لا توجد مقالات في المجال ده حالياً</div>'; return; }
+  if (!entries.length) {
+    resultBox.innerHTML = '<div class="loading">لا توجد مقالات في المجال ده حالياً</div>';
+    return;
+  }
   var html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-lightbulb" style="color:#fbbf24"></i> أفكار مقترحة لك:</h3>';
   entries.forEach(function(entry) {
     var title = entry.title.$t;
@@ -782,7 +798,6 @@ function loadIdeasFromBlog() {
   script.src = BLOG_URL + '/feeds/posts/default/-/' + encodeURIComponent(niche) + '?alt=json-in-script&max-results=8&callback=displayIdeas';
   script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الأفكار</div>'; };
   document.body.appendChild(script);
-  completeChallenge('ai', 15);
 }
 
 // مولد السكريبت
@@ -790,221 +805,29 @@ function generateScript() {
   var topic = document.getElementById('scriptTopic').value.trim();
   var type = document.getElementById('scriptType').value;
   var result = document.getElementById('scriptResult');
-  if (!topic) { result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>'; return; }
+  if (!topic) {
+    result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>';
+    return;
+  }
   var scripts = {
-    'تعليمي': '<h3>🎬 سكريبت تعليمي: ' + topic + '</h3><p><strong>المقدمة:</strong> السلام عليكم، في الفيديو ده هنتعلم كل حاجة عن ' + topic + ' من الصفر.</p><p><strong>المحتوى:</strong> أولاً، هنتكلم عن أهمية ' + topic + '. ثانياً، هنتعلم الخطوات. ثالثاً، أدوات مساعدة. رابعاً، الأخطاء الشائعة.</p><p><strong>الخاتمة:</strong> لو عجبك الفيديو، اضغط لايك واشترك!</p>',
-    'ترفيهي': '<h3>🎬 سكريبت ترفيهي: ' + topic + '</h3><p><strong>المقدمة:</strong> مستعد؟ هتشوف حاجة عن ' + topic + ' مش هتصدقها!</p><p><strong>المحتوى:</strong> أول حاجة، تخيل كده... تاني حاجة، بص هنا...</p><p><strong>الخاتمة:</strong> لو ضحكت، اعمل لايك!</p>',
-    'مراجعة': '<h3>🎬 سكريبت مراجعة: ' + topic + '</h3><p><strong>المقدمة:</strong> النهاردة هعمل مراجعة كاملة لـ ' + topic + '.</p><p><strong>المحتوى:</strong> أولاً، الإيجابيات. ثانياً، السلبيات. ثالثاً، السعر. رابعاً، تجربتي.</p><p><strong>الخاتمة:</strong> في الآخر، القرار ليك!</p>',
-    'قصة': '<h3>🎬 سكريبت قصة: ' + topic + '</h3><p><strong>المقدمة:</strong> في يوم من الأيام، حصلت حاجة غريبة عن ' + topic + '...</p><p><strong>المحتوى:</strong> البداية... المفاجأة... النهاية!</p><p><strong>الخاتمة:</strong> ايه رأيك في القصة؟</p>'
+    'تعليمي': '<h3>🎬 سكريبت تعليمي: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> السلام عليكم، في الفيديو ده هنتعلم كل حاجة عن ' + topic + ' من الصفر. لو مهتم، اكمل الفيديو للنهاية!</p><p><strong>المحتوى (3-5 دقايق):</strong> أولاً، هنتكلم عن أهمية ' + topic + '. ثانياً، هنتعلم الخطوات الأساسية. ثالثاً، هنتعرف على أدوات مساعدة. رابعاً، هنتكلم عن الأخطاء الشائعة.</p><p><strong>الخاتمة (10 ثواني):</strong> لو عجبك الفيديو، اضغط لايك واشترك في القناة!</p>',
+    'ترفيهي': '<h3>🎬 سكريبت ترفيهي: ' + topic + '</h3><p><strong>المقدمة (5 ثواني):</strong> مستعد؟ هتشوف حاجة عن ' + topic + ' مش هتصدقها!</p><p><strong>المحتوى (3-5 دقايق):</strong> خد يا سيدي، الموضوع ' + topic + ' فيه كذا حاجة. أول حاجة، تخيل كده... تاني حاجة، بص هنا... تالت حاجة، استنى بس!</p><p><strong>الخاتمة:</strong> لو ضحكت، اعمل لايك!</p>',
+    'مراجعة': '<h3>🎬 سكريبت مراجعة: ' + topic + '</h3><p><strong>المقدمة (10 ثواني):</strong> النهاردة هعمل مراجعة كاملة لـ ' + topic + '. هل يستحق؟ يلا نعرف.</p><p><strong>المحتوى (4-6 دقايق):</strong> أول حاجة، الإيجابيات. ثانياً، السلبيات. ثالثاً، السعر والقيمة. رابعاً، تجربتي الشخصية. خامساً، هل أنصح بيه؟</p><p><strong>الخاتمة:</strong> في الآخر، القرار ليك!</p>',
+    'قصة': '<h3>🎬 سكريبت قصة: ' + topic + '</h3><p><strong>المقدمة:</strong> في يوم من الأيام، حصلت حاجة غريبة عن ' + topic + '... </p><p><strong>المحتوى:</strong> البداية... بعدين... المفاجأة... النهاية!</p><p><strong>الخاتمة:</strong> ايه رأيك في القصة؟</p>'
   };
   result.innerHTML = '<div style="background:#fff;border:1px solid #e2e8f0;border-radius:14px;padding:18px;line-height:1.9;font-size:13px;color:#334155">' + scripts[type] + '</div>';
-  completeChallenge('script', 20);
 }
 
-// مولد Thumbnail
+// مولد أفكار Thumbnail
 function generateThumbnail() {
   var topic = document.getElementById('thumbTopic').value.trim();
   var result = document.getElementById('thumbResult');
-  if (!topic) { result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>'; return; }
+  if (!topic) {
+    result.innerHTML = '<div class="loading" style="color:#dc2626">اكتب موضوع الفيديو الأول</div>';
+    return;
+  }
   var ideas = [
     { text: '😱 ' + topic + ' - لن تتوقع!', color: '#ef4444' },
     { text: '💰 اربح من ' + topic + ' (طريقة سرية)', color: '#10b981' },
     { text: '🚀 ' + topic + ' في 5 دقايق فقط!', color: '#3b82f6' },
-    { text: '❌ لا تجرب ' + topic + ' قبل ما تشوف ده', color: '#f97316' },
-    { text: '🔥 ' + topic + ' - الحقيقة الكاملة', color: '#8b5cf6' },
-    { text: '✅ أفضل طريقة لـ ' + topic + ' في 2026', color: '#06b6d4' },
-    { text: '⚡ ' + topic + ' - لن تصدق النتيجة!', color: '#ec4899' },
-    { text: '🎯 خطة كاملة لـ ' + topic + ' للمبتدئين', color: '#14b8a6' }
-  ];
-  var html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-image" style="color:#fbbf24"></i> أفكار Thumbnail جاهزة:</h3>';
-  ideas.forEach(function(idea) {
-    html += '<div style="background:' + idea.color + ';color:#fff;border-radius:14px;padding:20px;margin-bottom:10px;font-weight:800;font-size:15px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.15);line-height:1.5">' + idea.text + '</div>';
-  });
-  html += '<div style="background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:14px;margin-top:15px;font-size:12px;color:#92400e;line-height:1.7"><strong>💡 نصائح للتصميم:</strong><br>• استخدم خط واضح وكبير<br>• خلي الصورة بسيطة<br>• استخدم ألوان متضاربة<br>• اكتب 3-5 كلمات كحد أقصى</div>';
-  result.innerHTML = html;
-  completeChallenge('ai', 15);
-}
-
-// دروس وشروحات
-window.displayLessons = function(data) {
-  var resultBox = document.getElementById('lessonsResult');
-  var entries = data.feed.entry || [];
-  if (!entries.length) { resultBox.innerHTML = '<div class="loading">لا توجد دروس في التصنيف ده حالياً</div>'; return; }
-  var html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-book" style="color:#fbbf24"></i> دروس مقترحة:</h3>';
-  entries.forEach(function(entry) {
-    var title = entry.title.$t;
-    var link = '#';
-    entry.link.forEach(function(l) { if (l.rel === 'alternate') link = l.href; });
-    var img = 'https://via.placeholder.com/80/0f172a/fbbf24?text=📚';
-    if (entry.media$thumbnail) img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w120-h120-c/');
-    html += '<a href="' + link + '" target="_blank" style="display:flex;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:10px;text-decoration:none;color:#0f172a"><img src="' + img + '" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0"><div style="flex:1;display:flex;flex-direction:column;justify-content:center"><h4 style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:5px">' + title + '</h4><div style="font-size:10px;color:#64748b"><i class="fa-solid fa-arrow-left"></i> اضغط لقراءة الدرس</div></div></a>';
-  });
-  resultBox.innerHTML = html;
-};
-
-function loadLessons() {
-  var category = document.getElementById('lessonCategory').value;
-  var resultBox = document.getElementById('lessonsResult');
-  resultBox.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل الدروس...</div>';
-  var oldScript = document.getElementById('lessonsScript');
-  if (oldScript) oldScript.remove();
-  var script = document.createElement('script');
-  script.id = 'lessonsScript';
-  script.src = BLOG_URL + '/feeds/posts/default/-/' + encodeURIComponent(category) + '?alt=json-in-script&max-results=10&callback=displayLessons';
-  script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الدروس</div>'; };
-  document.body.appendChild(script);
-  completeChallenge('read', 5);
-}
-
-// تتبع الأرباح
-var earnings = JSON.parse(localStorage.getItem('nourEarnings') || '[]');
-
-function saveEarning() {
-  var site = document.getElementById('earningSite').value;
-  var amount = parseFloat(document.getElementById('earningAmount').value);
-  var date = document.getElementById('earningDate').value || new Date().toISOString().split('T')[0];
-  var note = document.getElementById('earningNote').value.trim();
-  if (!amount || amount <= 0) { alert('اكتب مبلغ صحيح'); return; }
-  earnings.push({ id: Date.now(), site: site, amount: amount, date: date, note: note });
-  localStorage.setItem('nourEarnings', JSON.stringify(earnings));
-  document.getElementById('earningAmount').value = '';
-  document.getElementById('earningNote').value = '';
-  alert('✅ تم حفظ الأرباح بنجاح!');
-  updateEarningsScreen();
-  showScreen('earnings');
-  completeChallenge('earnings', 10);
-}
-
-function calculateStats() {
-  var today = new Date().toISOString().split('T')[0];
-  var currentMonth = today.substring(0, 7);
-  var total = earnings.reduce(function(sum, e) { return sum + e.amount; }, 0);
-  var todayTotal = earnings.filter(function(e) { return e.date === today; }).reduce(function(sum, e) { return sum + e.amount; }, 0);
-  var monthTotal = earnings.filter(function(e) { return e.date.startsWith(currentMonth); }).reduce(function(sum, e) { return sum + e.amount; }, 0);
-  return { total: total, todayTotal: todayTotal, monthTotal: monthTotal };
-}
-
-function updateEarningsScreen() {
-  var stats = calculateStats();
-  if (document.getElementById('totalEarnings')) {
-    document.getElementById('totalEarnings').textContent = '$' + stats.total.toFixed(2);
-    document.getElementById('todayEarnings').textContent = '$' + stats.todayTotal.toFixed(2);
-    document.getElementById('monthEarnings').textContent = '$' + stats.monthTotal.toFixed(2);
-    var goal = parseFloat(document.getElementById('monthlyGoal').value) || 100;
-    var progress = Math.min((stats.monthTotal / goal) * 100, 100);
-    document.getElementById('goalProgress').style.width = progress + '%';
-    document.getElementById('goalText').textContent = Math.round(progress) + '% من الهدف (' + goal + '$)';
-    var siteTotals = {};
-    earnings.forEach(function(e) { siteTotals[e.site] = (siteTotals[e.site] || 0) + e.amount; });
-    var sortedSites = Object.entries(siteTotals).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 5);
-    var topSitesList = document.getElementById('topSitesList');
-    if (sortedSites.length === 0) {
-      topSitesList.innerHTML = '<div class="empty-state"><i class="fa-solid fa-chart-pie"></i><h3>لا توجد أرباح بعد</h3></div>';
-    } else {
-      var html = '';
-      sortedSites.forEach(function(site, i) {
-        html += '<div class="top-site-item"><div class="top-site-rank">' + (i + 1) + '</div><div class="top-site-name">' + site[0] + '</div><div class="top-site-amount">$' + site[1].toFixed(2) + '</div></div>';
-      });
-      topSitesList.innerHTML = html;
-    }
-    var chartBars = document.getElementById('chartBars');
-    var last7Days = [];
-    for (var i = 6; i >= 0; i--) {
-      var d = new Date();
-      d.setDate(d.getDate() - i);
-      var dateStr = d.toISOString().split('T')[0];
-      var dayTotal = earnings.filter(function(e) { return e.date === dateStr; }).reduce(function(sum, e) { return sum + e.amount; }, 0);
-      last7Days.push({ total: dayTotal, dayName: d.toLocaleDateString('ar-EG', { weekday: 'short' }) });
-    }
-    var maxTotal = Math.max.apply(null, last7Days.map(function(d) { return d.total; }).concat([1]));
-    var chartHtml = '';
-    last7Days.forEach(function(d) {
-      var height = (d.total / maxTotal) * 100;
-      chartHtml += '<div class="chart-bar-wrap"><div class="chart-value">' + (d.total > 0 ? '$' + d.total.toFixed(0) : '') + '</div><div class="chart-bar" style="height:' + height + '%"></div><div class="chart-label">' + d.dayName + '</div></div>';
-    });
-    chartBars.innerHTML = chartHtml;
-  }
-}
-
-var currentFilter = 'all';
-function filterHistory(filter, btn) {
-  currentFilter = filter;
-  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
-  btn.classList.add('active');
-  renderHistory();
-}
-
-function renderHistory() {
-  var historyList = document.getElementById('historyList');
-  if (!historyList) return;
-  if (earnings.length === 0) {
-    historyList.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><h3>لا توجد أرباح مسجلة</h3></div>';
-    return;
-  }
-  var today = new Date().toISOString().split('T')[0];
-  var weekAgo = new Date();
-  weekAgo.setDate(weekAgo.getDate() - 7);
-  var weekAgoStr = weekAgo.toISOString().split('T')[0];
-  var currentMonth = today.substring(0, 7);
-  var filtered = earnings.slice();
-  if (currentFilter === 'today') filtered = filtered.filter(function(e) { return e.date === today; });
-  else if (currentFilter === 'week') filtered = filtered.filter(function(e) { return e.date >= weekAgoStr; });
-  else if (currentFilter === 'month') filtered = filtered.filter(function(e) { return e.date.startsWith(currentMonth); });
-  filtered.sort(function(a, b) { return b.date.localeCompare(a.date) || b.id - a.id; });
-  if (filtered.length === 0) {
-    historyList.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><h3>لا توجد أرباح في الفترة دي</h3></div>';
-    return;
-  }
-  var html = '';
-  filtered.forEach(function(e) {
-    var dateStr = new Date(e.date).toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
-    html += '<div class="history-item"><div class="history-icon"><i class="fa-solid fa-dollar-sign"></i></div><div class="history-info"><h4>' + e.site + '</h4><small>' + dateStr + (e.note ? ' • ' + e.note : '') + '</small></div><div class="history-amount">+$' + e.amount.toFixed(2) + '</div><button class="history-delete" onclick="deleteEarning(' + e.id + ')"><i class="fa-solid fa-trash"></i></button></div>';
-  });
-  historyList.innerHTML = html;
-}
-
-function deleteEarning(id) {
-  if (!confirm('متأكد إنك عايز تحذف العملية دي؟')) return;
-  earnings = earnings.filter(function(e) { return e.id !== id; });
-  localStorage.setItem('nourEarnings', JSON.stringify(earnings));
-  renderHistory();
-  updateEarningsScreen();
-}
-
-function clearAllEarnings() {
-  if (!confirm('متأكد إنك عايز تمسح كل البيانات؟')) return;
-  earnings = [];
-  localStorage.setItem('nourEarnings', JSON.stringify(earnings));
-  renderHistory();
-  updateEarningsScreen();
-  alert('✅ تم مسح كل البيانات');
-}
-
-// النسخ الاحتياطي
-function exportEarnings() {
-  if (earnings.length === 0) { alert('لا توجد بيانات لتصديرها'); return; }
-  var data = { app: 'NourCash', version: '1.0', exportDate: new Date().toISOString(), totalEarnings: earnings.length, totalAmount: earnings.reduce(function(sum, e) { return sum + e.amount; }, 0), earnings: earnings };
-  var blob = new Blob([JSON.stringify(data, null, 2)], { type: 'application/json' });
-  var url = URL.createObjectURL(blob);
-  var a = document.createElement('a');
-  a.href = url;
-  a.download = 'nour-cash-backup-' + new Date().toISOString().split('T')[0] + '.json';
-  document.body.appendChild(a);
-  a.click();
-  document.body.removeChild(a);
-  URL.revokeObjectURL(url);
-  alert('✅ تم تصدير البيانات!');
-}
-
-function importEarnings(event) {
-  var file = event.target.files[0];
-  if (!file) return;
-  var reader = new FileReader();
-  reader.onload = function(e) {
-    try {
-      var data = JSON.parse(e.target.result);
-      if (!data.earnings || !Array.isArray(data.earnings)) { alert('❌ الملف غير صالح'); return; }
-      if (!confirm('سيتم دمج البيانات. متأكد؟')) return;
-      var existingIds = new Set(earnings.map(function(e) { return e.id; }));
-      var importedCount = 0;
-      data.earnings.forEach(function(item
+    { text: '❌ لا تجرب ' + topic +
