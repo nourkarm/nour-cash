@@ -830,4 +830,409 @@ function generateThumbnail() {
     { text: '😱 ' + topic + ' - لن تتوقع!', color: '#ef4444' },
     { text: '💰 اربح من ' + topic + ' (طريقة سرية)', color: '#10b981' },
     { text: '🚀 ' + topic + ' في 5 دقايق فقط!', color: '#3b82f6' },
-    { text: '❌ لا تجرب ' + topic +
+    { text: '❌ لا تجرب ' + topic + ' قبل ما تشوف ده', color: '#f97316' },
+    { text: '🔥 ' + topic + ' - الحقيقة الكاملة', color: '#8b5cf6' },
+    { text: '✅ أفضل طريقة لـ ' + topic + ' في 2026', color: '#06b6d4' },
+    { text: '⚡ ' + topic + ' - لن تصدق النتيجة!', color: '#ec4899' },
+    { text: '🎯 خطة كاملة لـ ' + topic + ' للمبتدئين', color: '#14b8a6' }
+  ];
+  var html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-image" style="color:#fbbf24"></i> أفكار Thumbnail جاهزة:</h3>';
+  ideas.forEach(function(idea) {
+    html += '<div style="background:' + idea.color + ';color:#fff;border-radius:14px;padding:20px;margin-bottom:10px;font-weight:800;font-size:15px;text-align:center;box-shadow:0 4px 12px rgba(0,0,0,.15);line-height:1.5">' + idea.text + '</div>';
+  });
+  html += '<div style="background:#fef3c7;border:1px dashed #f59e0b;border-radius:12px;padding:14px;margin-top:15px;font-size:12px;color:#92400e;line-height:1.7"><strong>💡 نصائح للتصميم:</strong><br>• استخدم خط واضح وكبير<br>• خلي الصورة بسيطة (وجه + نص)<br>• استخدم ألوان متضاربة<br>• اكتب 3-5 كلمات كحد أقصى</div>';
+  result.innerHTML = html;
+}
+
+// دروس وشروحات
+window.displayLessons = function(data) {
+  var resultBox = document.getElementById('lessonsResult');
+  var entries = data.feed.entry || [];
+  if (!entries.length) {
+    resultBox.innerHTML = '<div class="loading">لا توجد دروس في التصنيف ده حالياً</div>';
+    return;
+  }
+  var html = '<h3 style="font-size:14px;color:#0f172a;margin-bottom:12px"><i class="fa-solid fa-book" style="color:#fbbf24"></i> دروس مقترحة:</h3>';
+  entries.forEach(function(entry) {
+    var title = entry.title.$t;
+    var link = '#';
+    entry.link.forEach(function(l) { if (l.rel === 'alternate') link = l.href; });
+    var img = 'https://via.placeholder.com/80/0f172a/fbbf24?text=📚';
+    if (entry.media$thumbnail) img = entry.media$thumbnail.url.replace(/\/s72-c\//, '/w120-h120-c/');
+    html += '<a href="' + link + '" target="_blank" style="display:flex;gap:12px;background:#fff;border:1px solid #e2e8f0;border-radius:12px;padding:12px;margin-bottom:10px;text-decoration:none;color:#0f172a"><img src="' + img + '" style="width:70px;height:70px;border-radius:10px;object-fit:cover;flex-shrink:0"><div style="flex:1;display:flex;flex-direction:column;justify-content:center"><h4 style="font-size:13px;font-weight:700;line-height:1.5;margin-bottom:5px">' + title + '</h4><div style="font-size:10px;color:#64748b"><i class="fa-solid fa-arrow-left"></i> اضغط لقراءة الدرس</div></div></a>';
+  });
+  resultBox.innerHTML = html;
+};
+
+function loadLessons() {
+  var category = document.getElementById('lessonCategory').value;
+  var resultBox = document.getElementById('lessonsResult');
+  resultBox.innerHTML = '<div class="loading"><i class="fa-solid fa-spinner fa-spin"></i> جاري تحميل الدروس...</div>';
+  var oldScript = document.getElementById('lessonsScript');
+  if (oldScript) oldScript.remove();
+  var script = document.createElement('script');
+  script.id = 'lessonsScript';
+  script.src = BLOG_URL + '/feeds/posts/default/-/' + encodeURIComponent(category) + '?alt=json-in-script&max-results=10&callback=displayLessons';
+  script.onerror = function() { resultBox.innerHTML = '<div class="loading">تعذر تحميل الدروس</div>'; };
+  document.body.appendChild(script);
+}
+
+// ============ تتبع الأرباح ============
+var earnings = JSON.parse(localStorage.getItem('nourEarnings') || '[]');
+
+function saveEarning() {
+  var site = document.getElementById('earningSite').value;
+  var amount = parseFloat(document.getElementById('earningAmount').value);
+  var date = document.getElementById('earningDate').value || new Date().toISOString().split('T')[0];
+  var note = document.getElementById('earningNote').value.trim();
+  if (!amount || amount <= 0) { alert('اكتب مبلغ صحيح'); return; }
+  earnings.push({ id: Date.now(), site: site, amount: amount, date: date, note: note });
+  localStorage.setItem('nourEarnings', JSON.stringify(earnings));
+  document.getElementById('earningAmount').value = '';
+  document.getElementById('earningNote').value = '';
+  alert('✅ تم حفظ الأرباح بنجاح!');
+  updateEarningsScreen();
+  showScreen('earnings');
+}
+
+function calculateStats() {
+  var today = new Date().toISOString().split('T')[0];
+  var currentMonth = today.substring(0, 7);
+  var total = earnings.reduce(function(sum, e) { return sum + e.amount; }, 0);
+  var todayTotal = earnings.filter(function(e) { return e.date === today; }).reduce(function(sum, e) { return sum + e.amount; }, 0);
+  var monthTotal = earnings.filter(function(e) { return e.date.startsWith(currentMonth); }).reduce(function(sum, e) { return sum + e.amount; }, 0);
+  return { total: total, todayTotal: todayTotal, monthTotal: monthTotal };
+}
+
+function updateEarningsScreen() {
+  var stats = calculateStats();
+  document.getElementById('totalEarnings').textContent = '$' + stats.total.toFixed(2);
+  document.getElementById('todayEarnings').textContent = '$' + stats.todayTotal.toFixed(2);
+  document.getElementById('monthEarnings').textContent = '$' + stats.monthTotal.toFixed(2);
+  var goalInput = document.getElementById('monthlyGoal');
+  var goal = parseFloat(goalInput.value) || 100;
+  var progress = Math.min((stats.monthTotal / goal) * 100, 100);
+  document.getElementById('goalProgress').style.width = progress + '%';
+  document.getElementById('goalText').textContent = Math.round(progress) + '% من الهدف (' + goal + '$)';
+  var siteTotals = {};
+  earnings.forEach(function(e) { siteTotals[e.site] = (siteTotals[e.site] || 0) + e.amount; });
+  var sortedSites = Object.entries(siteTotals).sort(function(a, b) { return b[1] - a[1]; }).slice(0, 5);
+  var topSitesList = document.getElementById('topSitesList');
+  if (sortedSites.length === 0) {
+    topSitesList.innerHTML = '<div class="empty-state"><i class="fa-solid fa-chart-pie"></i><h3>لا توجد أرباح بعد</h3><p>ابدأ بإضافة أول عملية ربح</p></div>';
+  } else {
+    var html = '';
+    sortedSites.forEach(function(site, i) {
+      html += '<div class="top-site-item"><div class="top-site-rank">' + (i + 1) + '</div><div class="top-site-name">' + site[0] + '</div><div class="top-site-amount">$' + site[1].toFixed(2) + '</div></div>';
+    });
+    topSitesList.innerHTML = html;
+  }
+  var chartBars = document.getElementById('chartBars');
+  var last7Days = [];
+  for (var i = 6; i >= 0; i--) {
+    var d = new Date();
+    d.setDate(d.getDate() - i);
+    var dateStr = d.toISOString().split('T')[0];
+    var dayTotal = earnings.filter(function(e) { return e.date === dateStr; }).reduce(function(sum, e) { return sum + e.amount; }, 0);
+    last7Days.push({ date: dateStr, total: dayTotal, dayName: d.toLocaleDateString('ar-EG', { weekday: 'short' }) });
+  }
+  var maxTotal = Math.max.apply(null, last7Days.map(function(d) { return d.total; }).concat([1]));
+  var chartHtml = '';
+  last7Days.forEach(function(d) {
+    var height = (d.total / maxTotal) * 100;
+    chartHtml += '<div class="chart-bar-wrap"><div class="chart-value">' + (d.total > 0 ? '$' + d.total.toFixed(0) : '') + '</div><div class="chart-bar" style="height:' + height + '%"></div><div class="chart-label">' + d.dayName + '</div></div>';
+  });
+  chartBars.innerHTML = chartHtml;
+}
+
+var currentFilter = 'all';
+
+function filterHistory(filter, btn) {
+  currentFilter = filter;
+  document.querySelectorAll('.filter-btn').forEach(function(b) { b.classList.remove('active'); });
+  btn.classList.add('active');
+  renderHistory();
+}
+
+function renderHistory() {
+  var historyList = document.getElementById('historyList');
+  if (earnings.length === 0) {
+    historyList.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><h3>لا توجد أرباح مسجلة</h3><p>اضغط على "إضافة أرباح جديدة" للبدء</p></div>';
+    return;
+  }
+  var today = new Date().toISOString().split('T')[0];
+  var weekAgo = new Date();
+  weekAgo.setDate(weekAgo.getDate() - 7);
+  var weekAgoStr = weekAgo.toISOString().split('T')[0];
+  var currentMonth = today.substring(0, 7);
+  var filtered = earnings.slice();
+  if (currentFilter === 'today') filtered = filtered.filter(function(e) { return e.date === today; });
+  else if (currentFilter === 'week') filtered = filtered.filter(function(e) { return e.date >= weekAgoStr; });
+  else if (currentFilter === 'month') filtered = filtered.filter(function(e) { return e.date.startsWith(currentMonth); });
+  filtered.sort(function(a, b) { return b.date.localeCompare(a.date) || b.id - a.id; });
+  if (filtered.length === 0) {
+    historyList.innerHTML = '<div class="empty-state"><i class="fa-solid fa-inbox"></i><h3>لا توجد أرباح في الفترة دي</h3></div>';
+    return;
+  }
+  var html = '';
+  filtered.forEach(function(e) {
+    var dateObj = new Date(e.date);
+    var dateStr = dateObj.toLocaleDateString('ar-EG', { year: 'numeric', month: 'long', day: 'numeric' });
+    html += '<div class="history-item"><div class="history-icon"><i class="fa-solid fa-dollar-sign"></i></div><div class="history-info"><h4>' + e.site + '</h4><small>' + dateStr + (e.note ? ' • ' + e.note : '') + '</small></div><div class="history-amount">+$' + e.amount.toFixed(2) + '</div><button class="history-delete" onclick="deleteEarning(' + e.id + ')"><i class="fa-solid fa-trash"></i></button></div>';
+  });
+  historyList.innerHTML = html;
+}
+
+function deleteEarning(id) {
+  if (!confirm('متأكد إنك عايز تحذف العملية دي؟')) return;
+  earnings = earnings.filter(function(e) { return e.id !== id; });
+  localStorage.setItem('nourEarnings', JSON.stringify(earnings));
+  renderHistory();
+  updateEarningsScreen();
+}
+
+function clearAllEarnings() {
+  if (!confirm('متأكد إنك عايز تمسح كل البيانات؟ ده مش هينفع نرجعها تاني!')) return;
+  earnings = [];
+  localStorage.setItem('nourEarnings', JSON.stringify(earnings));
+  renderHistory();
+  updateEarningsScreen();
+  alert('✅ تم مسح كل البيانات');
+}
+
+// ============ النسخ الا حتياطي والاستيراد ============
+function exportEarnings() {
+  if (earnings.length === 0) { alert('لا توجد بيانات لتصديرها'); return; }
+  var data = {
+    app: 'NourCash',
+    version: '1.0',
+    exportDate: new Date().toISOString(),
+    totalEarnings: earnings.length,
+    totalAmount: earnings.reduce(function(sum, e) { return sum + e.amount; }, 0),
+    earnings: earnings
+  };
+  var dataStr = JSON.stringify(data, null, 2);
+  var blob = new Blob([dataStr], { type: 'application/json' });
+  var url = URL.createObjectURL(blob);
+  var a = document.createElement('a');
+  a.href = url;
+  a.download = 'nour-cash-backup-' + new Date().toISOString().split('T')[0] + '.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+  alert('✅ تم تصدير البيانات بنجاح!');
+}
+
+function importEarnings(event) {
+  var file = event.target.files[0];
+  if (!file) return;
+  var reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      var data = JSON.parse(e.target.result);
+      if (!data.earnings || !Array.isArray(data.earnings)) { alert('❌ الملف غير صالح'); return; }
+      if (!confirm('سيتم دمج البيانات المستوردة مع البيانات الحالية. متأكد؟')) return;
+      var existingIds = new Set(earnings.map(function(e) { return e.id; }));
+      var importedCount = 0;
+      data.earnings.forEach(function(item) {
+        if (!existingIds.has(item.id)) { earnings.push(item); importedCount++; }
+      });
+      earnings.sort(function(a, b) { return b.date.localeCompare(a.date) || b.id - a.id; });
+      localStorage.setItem('nourEarnings', JSON.stringify(earnings));
+      alert('✅ تم استيراد ' + importedCount + ' عملية بنجاح!');
+      updateEarningsScreen();
+      renderHistory();
+    } catch (err) {
+      console.error(err);
+      alert('❌ حدث خطأ في قراءة الملف');
+    }
+  };
+  reader.readAsText(file);
+  event.target.value = '';
+}
+
+// ============ المفضلة والمشاركة ============
+var favorites = JSON.parse(localStorage.getItem('nourFav') || '[]');
+
+function toggleFav(name, btn) {
+  var index = favorites.indexOf(name);
+  if (index > -1) {
+    favorites.splice(index, 1);
+    btn.classList.remove('active');
+    btn.innerHTML = '<i class="fa-regular fa-star"></i>';
+  } else {
+    favorites.push(name);
+    btn.classList.add('active');
+    btn.innerHTML = '<i class="fa-solid fa-star"></i>';
+  }
+  localStorage.setItem('nourFav', JSON.stringify(favorites));
+}
+
+document.querySelectorAll('.tool-card').forEach(function(card) {
+  var title = card.querySelector('h4');
+  if (!title) return;
+  var name = title.textContent.trim();
+  var favBtn = document.createElement('button');
+  favBtn.className = 'fav-btn';
+  favBtn.innerHTML = favorites.indexOf(name) > -1 ? '<i class="fa-solid fa-star"></i>' : '<i class="fa-regular fa-star"></i>';
+  if (favorites.indexOf(name) > -1) favBtn.classList.add('active');
+  favBtn.onclick = function(e) { e.stopPropagation(); toggleFav(name, favBtn); };
+  card.appendChild(favBtn);
+  var info = card.querySelector('.tool-info');
+  if (!info) return;
+  var shareBtn = document.createElement('button');
+  shareBtn.className = 'share-btn';
+  shareBtn.innerHTML = '<i class="fa-solid fa-share-nodes"></i>';
+  shareBtn.onclick = function(e) {
+    e.stopPropagation();
+    if (navigator.share) {
+      navigator.share({ title: 'نور كاش - ' + name, text: 'جرب ' + name + ' على تطبيق نور كاش!', url: window.location.href });
+    } else {
+      alert('المشاركة غير متاحة على هذا المتصفح');
+    }
+  };
+  info.appendChild(shareBtn);
+});
+
+// ============ OneSignal Notifications ============
+window.OneSignalDeferred = window.OneSignalDeferred || [];
+OneSignalDeferred.push(async function(OneSignal) {
+  await OneSignal.init({
+    appId: "a4a1e117-5ab2-421d-bb79-281f6af9a47d"
+  });
+});
+  // ============ نظام التحديات والنقاط ============
+
+var CHALLENGES = [
+  { id: 'earnings', title: 'سجّل أرباحك النهاردة', desc: 'أضف عملية ربح واحدة على الأقل', points: 10, icon: '💰' },
+  { id: 'read', title: 'اقرأ مقال من المدونة', desc: 'افتح أي مقال واقرأه', points: 5, icon: '📖' },
+  { id: 'ai', title: 'جرب أداة ذكاء اصطناعي', desc: 'استخدم ChatGPT أو Leonardo', points: 15, icon: '🤖' },
+  { id: 'script', title: 'اكتب سكريبت فيديو', desc: 'استخدم مولد السكريبت', points: 20, icon: '✍️' },
+  { id: 'calc', title: 'استخدم حاسبة الأرباح', desc: 'احسب أرباحك المتوقعة', points: 5, icon: '🧮' }
+];
+
+var BADGES = [
+  { id: 'beginner', name: 'مبتدئ', icon: '🌱', points: 0 },
+  { id: 'active', name: 'نشيط', icon: '⭐', points: 50 },
+  { id: 'pro', name: 'محترف', icon: '🏆', points: 200 },
+  { id: 'expert', name: 'خبير', icon: '👑', points: 500 },
+  { id: 'legend', name: 'أسطورة', icon: '💎', points: 1000 },
+  { id: 'master', name: 'ماستر', icon: '🔥', points: 2000 },
+  { id: 'grand', name: 'أسطوري', icon: '🌟', points: 5000 },
+  { id: 'god', name: 'إله الربح', icon: '⚡', points: 10000 }
+];
+
+var totalPoints = parseInt(localStorage.getItem('nourPoints') || '0');
+var completedChallenges = JSON.parse(localStorage.getItem('nourCompleted') || '{}');
+var today = new Date().toISOString().split('T')[0];
+
+if (completedChallenges.date !== today) {
+  completedChallenges = { date: today, items: [] };
+  localStorage.setItem('nourCompleted', JSON.stringify(completedChallenges));
+}
+
+function renderChallenges() {
+  if (!document.getElementById('totalPoints')) return;
+  
+  document.getElementById('totalPoints').textContent = totalPoints;
+  
+  var currentLevel = BADGES[0];
+  var nextLevel = BADGES[1];
+  for (var i = BADGES.length - 1; i >= 0; i--) {
+    if (totalPoints >= BADGES[i].points) {
+      currentLevel = BADGES[i];
+      nextLevel = BADGES[i + 1] || BADGES[i];
+      break;
+    }
+  }
+  
+  var progressPercent = 100;
+  if (nextLevel && nextLevel !== currentLevel) {
+    var range = nextLevel.points - currentLevel.points;
+    var progress = totalPoints - currentLevel.points;
+    progressPercent = Math.min((progress / range) * 100, 100);
+    document.getElementById('levelText').textContent = currentLevel.name + ' - ' + totalPoints + ' من ' + nextLevel.points + ' نقطة';
+  } else {
+    document.getElementById('levelText').textContent = currentLevel.name + ' - ' + totalPoints + ' نقطة';
+  }
+  document.getElementById('levelFill').style.width = progressPercent + '%';
+  
+  var dailyChallenges = document.getElementById('dailyChallenges');
+  var html = '';
+  CHALLENGES.forEach(function(ch) {
+    var isDone = completedChallenges.items.indexOf(ch.id) > -1;
+    html += '<div class="challenge-item ' + (isDone ? 'done' : '') + '" onclick="completeChallenge(\'' + ch.id + '\', ' + ch.points + ')">';
+    html += '<div class="challenge-check"><i class="fa-solid ' + (isDone ? 'fa-check' : 'fa-circle') + '"></i></div>';
+    html += '<div class="challenge-info"><h4>' + ch.icon + ' ' + ch.title + '</h4><p>' + ch.desc + '</p></div>';
+    html += '<div class="challenge-points">+' + ch.points + '</div>';
+    html += '</div>';
+  });
+  dailyChallenges.innerHTML = html;
+  
+  var badgesGrid = document.getElementById('badgesGrid');
+  var badgesHtml = '';
+  BADGES.slice(0, 8).forEach(function(b) {
+    var unlocked = totalPoints >= b.points;
+    badgesHtml += '<div class="badge-item ' + (unlocked ? 'unlocked' : '') + '">';
+    badgesHtml += '<span class="badge-icon">' + b.icon + '</span>';
+    badgesHtml += '<span class="badge-name">' + b.name + '</span>';
+    badgesHtml += '</div>';
+  });
+  badgesGrid.innerHTML = badgesHtml;
+  
+  var statsList = document.getElementById('statsList');
+  var completedCount = completedChallenges.items.length;
+  var earningsCount = (typeof earnings !== 'undefined') ? earnings.length : 0;
+  
+  var statsHtml = '';
+  statsHtml += '<div class="progress-stat"><div class="stat-icon" style="background:linear-gradient(135deg,#fbbf24,#f59e0b)"><i class="fa-solid fa-star"></i></div><div class="stat-info"><h4>إجمالي النقاط</h4><strong>' + totalPoints + '</strong></div></div>';
+  statsHtml += '<div class="progress-stat"><div class="stat-icon" style="background:linear-gradient(135deg,#10b981,#059669)"><i class="fa-solid fa-check"></i></div><div class="stat-info"><h4>تحديات اليوم</h4><strong>' + completedCount + ' / ' + CHALLENGES.length + '</strong></div></div>';
+  statsHtml += '<div class="progress-stat"><div class="stat-icon" style="background:linear-gradient(135deg,#3b82f6,#2563eb)"><i class="fa-solid fa-dollar-sign"></i></div><div class="stat-info"><h4>عمليات الربح</h4><strong>' + earningsCount + '</strong></div></div>';
+  statsList.innerHTML = statsHtml;
+}
+
+function completeChallenge(id, points) {
+  if (completedChallenges.items.indexOf(id) > -1) {
+    alert('إنت خلصت التحدي ده بالفعل! ✅');
+    return;
+  }
+  completedChallenges.items.push(id);
+  localStorage.setItem('nourCompleted', JSON.stringify(completedChallenges));
+  totalPoints += points;
+  localStorage.setItem('nourPoints', totalPoints);
+  alert('🎉 ممتاز! كسبت ' + points + ' نقطة');
+  renderChallenges();
+}
+
+function resetDailyChallenges() {
+  if (!confirm('متأكد إنك عايز تعيد تعيين تحديات اليوم؟')) return;
+  completedChallenges = { date: today, items: [] };
+  localStorage.setItem('nourCompleted', JSON.stringify(completedChallenges));
+  renderChallenges();
+  alert('✅ تم إعادة التعيين');
+    }
+
+// ============ التشغيل الأولي ============
+document.addEventListener('DOMContentLoaded', function() {
+  var dateInput = document.getElementById('earningDate');
+  if (dateInput) dateInput.value = new Date().toISOString().split('T')[0];
+  var goalInput = document.getElementById('monthlyGoal');
+  if (goalInput) goalInput.addEventListener('input', updateEarningsScreen);
+  updateEarningsScreen();
+  renderHistory();
+});
+  // تفعيل شاشة التحديات عند فتحها
+var originalShowScreen = showScreen;
+showScreen = function(name) {
+  originalShowScreen(name);
+  if (name === 'challenges') {
+    setTimeout(function() {
+      renderChallenges();
+    }, 100);
+  }
+};
+</script>
+
+</body>
+</html>
