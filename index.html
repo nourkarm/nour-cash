@@ -1222,6 +1222,16 @@ document.addEventListener('DOMContentLoaded', function() {
   updateEarningsScreen();
   renderHistory();
 });
+  // تفعيل شاشة التحديات عند فتحها
+var originalShowScreen = showScreen;
+showScreen = function(name) {
+  originalShowScreen(name);
+  if (name === 'challenges') {
+    setTimeout(function() {
+      renderChallenges();
+    }, 100);
+  }
+};
 </script>
 
 </body>
