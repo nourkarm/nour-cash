@@ -595,6 +595,32 @@ body{font-family:'Cairo',sans-serif;background:#f8fafc;color:#0f172a;padding-bot
     </div>
   </div>
 </div>
+  <!-- ============ شاشة التحديات ============ -->
+<div class="screen-page" id="screen-challenges">
+  <div class="page-header">
+    <button class="back-btn" onclick="showScreen('home')"><i class="fa-solid fa-arrow-right"></i></button>
+    <h2>🎯 تحدياتي</h2>
+  </div>
+  <div class="content">
+    <div class="points-card">
+      <div class="stars">🌟</div>
+      <h2 id="totalPoints">0</h2>
+      <p>نقطة</p>
+      <div class="level-bar">
+        <div class="level-fill" id="levelFill"></div>
+      </div>
+      <div class="level-text" id="levelText">مبتدئ - 0 من 50 نقطة</div>
+    </div>
+    <div class="section-head"><h2>📅 تحدي اليوم</h2></div>
+    <div id="dailyChallenges">
+      <div class="loading">جاري تحميل التحديات...</div>
+    </div>
+    <div class="section-head"><h2>🏆 شاراتي</h2></div>
+    <div class="badges-grid" id="badgesGrid"></div>
+    <div class="section-head"><h2>📊 إحصائياتي</h2></div>
+    <div id="statsList"></div>
+  </div>
+</div>
 
 <!-- ============ شاشة القائمة ============ -->
 <div class="screen-page" id="screen-menu">
